@@ -1,16 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <link rel="stylesheet" href="/css/styles.css">
-
+    <title>Marketplace | Simplemente Futbol</title>
+    <link rel="stylesheet" href="/css/marketplace.css">
 </head>
+<body class="marketplace-body">
+    <div class="marketplace-shell">
+        <header class="marketplace-header">
+            <div>
+                <p class="eyebrow">SIMPLEMENTE FUTBOL / MARKETPLACE</p>
+                <h1>Compra lo que mueve el fútbol.</h1>
+                <p class="marketplace-intro">Echa un vistazo a kits, accesorios, coleccionables y novedades del club.</p>
+            </div>
+            <a class="back-link" href="/html/index.html">Volver al inicio</a>
+        </header>
 
-<body>
-    <h1>
-        Bienvenido a Marketplace.
-    </h1>
+        <nav class="marketplace-nav" aria-label="Marketplace">
+            <button class="marketplace-tab active" type="button">marketplace</button>
+        </nav>
+
+        <main class="marketplace-layout">
+            <section class="catalog-panel" aria-labelledby="catalog-title">
+                <div class="catalog-toolbar">
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">NOVEDADES</p>
+                            <h2 id="catalog-title">Mercado destacado</h2>
+                        </div>
+                        <span class="live-dot">+ 320 OFERTAS</span>
+                    </div>
+
+                    <label class="search-field" for="market-search">
+                        <span>Buscar</span>
+                        <input id="market-search" type="search" placeholder="Camiseta, balón, entrenamiento...">
+                    </label>
+                </div>
+
+                <div class="sort-row">
+                    <span>Ordenar por</span>
+                    <span class="sort-pill">Relevancia</span>
+                </div>
+
+                <div class="product-grid">
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80" alt="Jugador con camiseta de fútbol en estadio">
+                            <span class="product-badge">Más vendido</span>
+                        </div>
+                        <div class="product-info"> 
+                            <div class="product-meta">
+                                <span class="product-category">Camisetas</span>
+                                <button class="favorite-button" type="button" aria-label="Guardar camiseta">♡</button>
+                            </div>
+                            <h3>Camiseta Local 2026</h3>
+                            <p>Real Madrid</p>
+                            <div class="product-footer">
+                                <strong>COP $189.000</strong>
+                                <button class="product-button" type="button">Añadir</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80" alt="Balón de fútbol realista sobre césped">
+                            <span class="product-badge">Nuevo</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span class="product-category">Entrenamiento</span>
+                                <button class="favorite-button" type="button" aria-label="Guardar balón">♡</button>
+                            </div>
+                            <h3>Balón Oficial Match</h3>
+                            <p>FIFA Pro</p>
+                            <div class="product-footer">
+                                <strong>COP $142.000</strong>
+                                <button class="product-button" type="button">Añadir</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80" alt="Persona con gorra deportiva de fútbol">
+                            <span class="product-badge">Top</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span class="product-category">Accesorios</span>
+                                <button class="favorite-button" type="button" aria-label="Guardar gorra">♡</button>
+                            </div>
+                            <h3>Gorra Clubhouse</h3>
+                            <p>Barcelona</p>
+                            <div class="product-footer">
+                                <strong>COP $89.000</strong>
+                                <button class="product-button" type="button">Añadir</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?auto=format&fit=crop&w=1200&q=80" alt="Trofeo de fútbol realista en contexto deportivo">
+                            <span class="product-badge">Edición</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span class="product-category">Coleccionables</span>
+                                <button class="favorite-button" type="button" aria-label="Guardar coleccionable">♡</button>
+                            </div>
+                            <h3>Mini Replica Champions</h3>
+                            <p>Colección</p>
+                            <div class="product-footer">
+                                <strong>COP $215.000</strong>
+                                <button class="product-button" type="button">Añadir</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=1200&q=80" alt="Mochila deportiva para entrenamiento">
+                            <span class="product-badge">Premium</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span class="product-category">Entrenamiento</span>
+                                <button class="favorite-button" type="button" aria-label="Guardar mochila">♡</button>
+                            </div>
+                            <h3>Mochila Training Pro</h3>
+                            <p>Performance</p>
+                            <div class="product-footer">
+                                <strong>COP $249.000</strong>
+                                <button class="product-button" type="button">Añadir</button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card">
+                        <div class="product-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1556056504-5c7696c4c28d?auto=format&fit=crop&w=1200&q=80" alt="Camiseta deportiva realista de fútbol">
+                            <span class="product-badge">Oferta</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-meta">
+                                <span class="product-category">Camisetas</span>
+                                <button class="favorite-button" type="button" aria-label="Guardar camiseta visitante">♡</button>
+                            </div>
+                            <h3>Camiseta Visitante 2026</h3>
+                            <p>Liverpool</p>
+                            <div class="product-footer">
+                                <strong>COP $195.000</strong>
+                                <button class="product-button" type="button">Añadir</button>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <aside class="cart-panel" aria-labelledby="cart-title">
+                <div class="cart-header">
+                    <h3 id="cart-title">Tu carrito</h3>
+                    <span id="cart-count">0 artículos</span>
+                </div>
+
+                <div id="cart-items" class="cart-items">
+                    <p class="empty-cart">Aún no has añadido productos.</p>
+                </div>
+
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <strong id="subtotal">COP $0</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Envío</span>
+                        <strong id="shipping">COP $0</strong>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <strong id="total">COP $0</strong>
+                    </div>
+                </div>
+
+                <button class="checkout-button" type="button">Finalizar compra</button>
+            </aside>
+        </main>
+
+        <footer class="site-footer bet-footer"><p>Simplemente Futbol · Marketplace oficial</p></footer>
+    </div>
+
+    <script>
+       
+    </script>
 </body>
 </html>

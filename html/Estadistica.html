@@ -1,16 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <link rel="stylesheet" href="/css/styles.css">
-    
+    <title>Estadísticas | Simplemente Futbol</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/estadistica.css">
 </head>
 
-<body>
-    <h1>
-        Bienvenido a Estadística.
-    </h1>
+<body class="stats-page">
+    <div class="stats-shell">
+        <header class="stats-header">
+            <div>
+                <p class="eyebrow">SIMPLEMENTE FUTBOL / ESTADÍSTICAS</p>
+                <h1>Panel de rendimiento</h1>
+            </div>
+            <div class="stats-header-actions">
+                <span class="user-badge">Invitado</span>
+                <button class="ghost-button" type="button">Modo claro</button>
+            </div>
+        </header>
+
+        <nav class="home-nav" aria-label="Navegación principal">
+            <a href="/html/index.html">Inicio</a>
+            <a href="/html/Bet.html">Bet</a>
+            <a href="/html/Marketplace.html">Marketplace</a>
+            <a href="/html/Estadistica.html" class="active">Estadísticas</a>
+        </nav>
+
+        <main class="stats-layout">
+            <section class="stats-main">
+                <div class="stats-card">
+                    <div class="stats-card-header">
+                        <div>
+                            <p class="eyebrow">Comparativa global</p>
+                            <h2>Rendimiento por equipos</h2>
+                        </div>
+                        <select class="filter-select" aria-label="Filtrar liga">
+                            <option>Premier League</option>
+                            <option>LaLiga</option>
+                            <option>Serie A</option>
+                            <option>Liga MX</option>
+                        </select>
+                    </div>
+
+                    <div class="team-chart-grid">
+                        <article class="team-chart-card">
+                            <div class="team-card-head">
+                                <span class="team-name">Real Madrid</span>
+                                <span class="metric-badge positive">+12%</span>
+                            </div>
+                            <div class="sparkline sparkline-up" aria-label="Gráfico Real Madrid"></div>
+                            <ul class="mini-metrics">
+                                <li><span>PPDA</span><strong>9.4</strong></li>
+                                <li><span>xG</span><strong>2.41</strong></li>
+                                <li><span>Pose.</span><strong>62%</strong></li>
+                            </ul>
+                        </article>
+
+                        <article class="team-chart-card">
+                            <div class="team-card-head">
+                                <span class="team-name">Barcelona</span>
+                                <span class="metric-badge positive">+8%</span>
+                            </div>
+                            <div class="sparkline sparkline-up-alt" aria-label="Gráfico Barcelona"></div>
+                            <ul class="mini-metrics">
+                                <li><span>PPDA</span><strong>10.1</strong></li>
+                                <li><span>xG</span><strong>2.18</strong></li>
+                                <li><span>Pose.</span><strong>58%</strong></li>
+                            </ul>
+                        </article>
+
+                        <article class="team-chart-card">
+                            <div class="team-card-head">
+                                <span class="team-name">Arsenal</span>
+                                <span class="metric-badge positive">+15%</span>
+                            </div>
+                            <div class="sparkline sparkline-up" aria-label="Gráfico Arsenal"></div>
+                            <ul class="mini-metrics">
+                                <li><span>PPDA</span><strong>8.8</strong></li>
+                                <li><span>xG</span><strong>2.76</strong></li>
+                                <li><span>Pose.</span><strong>61%</strong></li>
+                            </ul>
+                        </article>
+
+                        <article class="team-chart-card">
+                            <div class="team-card-head">
+                                <span class="team-name">Bayern</span>
+                                <span class="metric-badge neutral">+3%</span>
+                            </div>
+                            <div class="sparkline sparkline-flat" aria-label="Gráfico Bayern"></div>
+                            <ul class="mini-metrics">
+                                <li><span>PPDA</span><strong>11.2</strong></li>
+                                <li><span>xG</span><strong>2.05</strong></li>
+                                <li><span>Pose.</span><strong>57%</strong></li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-card-header compact-title">
+                        <h3>Tabla comparativa</h3>
+                        <a href="#" class="table-link">Ver detalle</a>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Equipo</th>
+                                    <th>GF</th>
+                                    <th>xG</th>
+                                    <th>PPDA</th>
+                                    <th>P</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Real Madrid</td>
+                                    <td>31</td>
+                                    <td>27.8</td>
+                                    <td>9.4</td>
+                                    <td>79</td>
+                                </tr>
+                                <tr>
+                                    <td>Barcelona</td>
+                                    <td>28</td>
+                                    <td>25.9</td>
+                                    <td>10.1</td>
+                                    <td>74</td>
+                                </tr>
+                                <tr>
+                                    <td>Arsenal</td>
+                                    <td>34</td>
+                                    <td>29.1</td>
+                                    <td>8.8</td>
+                                    <td>81</td>
+                                </tr>
+                                <tr>
+                                    <td>Bayern</td>
+                                    <td>27</td>
+                                    <td>24.6</td>
+                                    <td>11.2</td>
+                                    <td>70</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="stats-aside">
+                <div class="stats-card side-spotlight">
+                    <p class="eyebrow">Equipo activo</p>
+                    <h3>Real Madrid</h3>
+                    <div class="gauge-wrap">
+                        <div class="ring-gauge">
+                            <span>78%</span>
+                        </div>
+                    </div>
+                    <ul class="team-summary">
+                        <li><span>Presión alta</span><strong>86%</strong></li>
+                        <li><span>Goles esperados</span><strong>2.41</strong></li>
+                        <li><span>Ritmo</span><strong>Alto</strong></li>
+                    </ul>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-card-header compact-title">
+                        <h3>Gráficos rápidos</h3>
+                    </div>
+                    <div class="bars-chart" aria-label="Comparación de presión">
+                        <div class="bar-group">
+                            <span class="bar-label">RM</span>
+                            <div class="bar bar-1"><i></i></div>
+                        </div>
+                        <div class="bar-group">
+                            <span class="bar-label">BRC</span>
+                            <div class="bar bar-2"><i></i></div>
+                        </div>
+                        <div class="bar-group">
+                            <span class="bar-label">ARS</span>
+                            <div class="bar bar-3"><i></i></div>
+                        </div>
+                        <div class="bar-group">
+                            <span class="bar-label">BAY</span>
+                            <div class="bar bar-4"><i></i></div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
 </body>
+
 </html>

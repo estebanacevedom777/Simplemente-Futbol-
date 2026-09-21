@@ -1,16 +1,97 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <link rel="stylesheet" href="/css/styles.css">
-   
+    <title>Bet | Simplemente Futbol</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/bet.css">
+    <link rel="stylesheet" href="/JS/bet.js">
 </head>
-    <h1>
-        Bienvenido a Bet.
-    </h1>
+
 <body>
-    
+    <header class="bet-header">
+        <div>
+            <p class="eyebrow">SIMPLEMENTE FUTBOL / BET</p>
+            <h1>Pronostica el partido.</h1>
+            <p class="bet-intro">Elige tus mercados favoritos y arma tu combinada.</p>
+        </div>
+        <a class="back-link" href="/html/index.html">Volver al inicio</a>
+    </header>
+
+    <nav class="bet-nav" aria-label="Secciones de apuestas">
+        <a class="active" href="#partidos">Partidos</a>
+        <a href="#destacados">Destacados</a>
+        <a href="#reglas">Cómo jugar</a>
+    </nav>
+
+    <main class="bet-layout" id="partidos">
+        <section class="matches-panel" aria-labelledby="matches-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">HOY / 21 SEPTIEMBRE</p>
+                    <h2 id="matches-title">Mercados destacados</h2>
+                </div>
+                <span class="live-dot">EN VIVO</span>
+            </div>
+            <article class="match-card">
+                <div class="match-meta"><span>LaLiga</span><span>16:00</span></div>
+                <div class="teams"><strong>Real Madrid</strong><span>VS</span><strong>Barcelona</strong></div>
+                <div class="market-grid">
+                    <input id="madrid" name="madrid-barca" type="radio"><label class="odd-button"
+                        for="madrid"><span>1</span><strong>1.85</strong></label>
+                    <input id="empate-madrid" name="madrid-barca" type="radio"><label class="odd-button"
+                        for="empate-madrid"><span>X</span><strong>3.60</strong></label>
+                    <input id="barca" name="madrid-barca" type="radio"><label class="odd-button"
+                        for="barca"><span>2</span><strong>2.10</strong></label>
+                </div>
+            </article>
+            <article class="match-card">
+                <div class="match-meta"><span>Premier League</span><span>18:30</span></div>
+                <div class="teams"><strong>Arsenal</strong><span>VS</span><strong>Liverpool</strong></div>
+                <div class="market-grid">
+                    <input id="arsenal" name="arsenal-liverpool" type="radio"><label class="odd-button"
+                        for="arsenal"><span>1</span><strong>2.25</strong></label>
+                    <input id="empate-arsenal" name="arsenal-liverpool" type="radio"><label class="odd-button"
+                        for="empate-arsenal"><span>X</span><strong>3.40</strong></label>
+                    <input id="liverpool" name="arsenal-liverpool" type="radio"><label class="odd-button"
+                        for="liverpool"><span>2</span><strong>1.95</strong></label>
+                </div>
+            </article>
+            <article class="match-card">
+                <div class="match-meta"><span>Serie A</span><span>20:45</span></div>
+                <div class="teams"><strong>Inter</strong><span>VS</span><strong>Juventus</strong></div>
+                <div class="market-grid">
+                    <input id="inter" name="inter-juventus" type="radio"><label class="odd-button"
+                        for="inter"><span>1</span><strong>1.72</strong></label>
+                    <input id="empate-inter" name="inter-juventus" type="radio"><label class="odd-button"
+                        for="empate-inter"><span>X</span><strong>3.75</strong></label>
+                    <input id="juventus" name="inter-juventus" type="radio"><label class="odd-button"
+                        for="juventus"><span>2</span><strong>2.55</strong></label>
+                </div>
+            </article>
+        </section>
+
+        <aside class="bet-slip" aria-labelledby="slip-title">
+            <div class="slip-heading">
+                <h2 id="slip-title">Tu cupón</h2><span>Vista previa</span>
+            </div>
+            <div class="slip-selections">
+                <p class="empty-slip">Selecciona una cuota en los partidos para añadirla a tu pronóstico.</p>
+            </div>
+            <label class="stake-label" for="stake">Importe de apuesta</label>
+            <div class="stake-input"><span>COP $</span><input id="stake" type="number" min="1" step="1" value="10">
+            </div>
+            <div class="slip-total"><span>Cuota total</span><strong>Se calcula al confirmar</strong></div>
+            <div class="slip-total potential"><span>Ganancia potencial</span><strong>Según selección</strong></div>
+            <a class="place-bet" href="#partidos">Revisar pronóstico</a>
+        </aside>
+    </main>
+
+    <footer class="site-footer bet-footer">
+        <p>Simplemente Futbol · Apuestas responsables</p>
+    </footer>
 </body>
+
 </html>
