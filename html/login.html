@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#06191d">
+	<title>Iniciar sesión | Simplemente Futbol</title>
+	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/auth.css">
+	<script src="/JS/auth.js" defer></script>
+</head>
+
+<body class="auth-page">
+	<header class="auth-topbar">
+		<a class="auth-brand" href="/html/index.html" aria-label="Simplemente Futbol, inicio">
+			<span class="brand-mark" aria-hidden="true">SF</span>
+			<span>SIMPLEMENTE <strong>FUTBOL</strong></span>
+		</a>
+		<a class="auth-back" href="/html/index.html"><span aria-hidden="true">←</span> Volver al inicio</a>
+	</header>
+
+	<main class="auth-main">
+		<section class="auth-panel" aria-labelledby="auth-title">
+			<p class="auth-eyebrow">TU CANCHA, TU COMUNIDAD</p>
+			<h1 id="auth-title">Bienvenido de nuevo</h1>
+			<p class="auth-description">Inicia sesión para continuar en Simplemente Futbol.</p>
+
+			<form class="auth-form" data-auth-form="login">
+				<label for="login-email">Correo electrónico</label>
+				<input id="login-email" name="email" type="email" autocomplete="email" placeholder="nombre@correo.com" required>
+
+				<label for="login-password">Contraseña</label>
+				<input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Tu contraseña" required>
+
+				<p class="auth-status" data-auth-status aria-live="polite"></p>
+				<button class="auth-submit" type="submit">Iniciar sesión <span aria-hidden="true">→</span></button>
+			</form>
+
+			<p class="auth-switch">¿Aún no tienes cuenta? <a href="/html/signup.html">Crear cuenta</a></p>
+		</section>
+	</main>
+
+	<footer class="auth-footer">Simplemente Futbol <span>·</span> Pasión por el juego</footer>
+</body>
+
+</html>

@@ -1,72 +1,112 @@
 /* Estilos de la página de apuestas */
+.bet-page {
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-image: linear-gradient(rgba(7, 22, 30, 0.76), rgba(7, 22, 30, 0.82)),
+        url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1800&q=85");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: #edfdfc;
+    font-family: Arial, sans-serif;
+}
+
+.bet-shell {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 24px 18px 42px;
+}
+
 .bet-header,
 .bet-layout,
 .bet-nav {
-    width: min(1380px, calc(100% - 48px));
-    margin-inline: auto;
+    width: 100%;
 }
 
 .bet-header {
     display: flex;
     align-items: end;
     justify-content: space-between;
-    gap: 24px;
-    padding: 52px 0 28px;
+    gap: 16px;
+    border: 1px solid rgba(0, 244, 195, 0.18);
+    border-radius: 28px;
+    padding: 26px 28px;
+    background: rgba(5, 20, 26, 0.72);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(14px);
 }
 
 .bet-header h1 {
-    margin: 0;
+    margin: 8px 0 0;
     text-align: left;
-    font-size: clamp(2.5rem, 7vw, 5.2rem);
-    line-height: .95;
+    font-size: clamp(2.4rem, 3vw, 3.2rem);
+    line-height: 1.1;
+    color: #f3fffd;
 }
 
 .eyebrow {
-    margin: 0 0 12px;
+    margin: 0;
     color: #00f4c3;
-    font: 700 .76rem/1.2 Arial, sans-serif;
-    letter-spacing: .14em;
+    font: 700 0.78rem/1.2 Arial, sans-serif;
+    letter-spacing: 0.24rem;
+    text-transform: uppercase;
 }
 
 .bet-intro {
-    margin: 18px 0 0;
-    color: #e9ffff;
-    font: 18px/1.5 Arial, sans-serif;
+    margin: 10px 0 0;
+    color: #edfdfc;
+    font: 15px/1.5 Arial, sans-serif;
 }
 
 .back-link {
-    color: #00f4c3;
-    border: 1px solid #00f4c3;
+    color: #ebfffb;
+    border: 1px solid rgba(0, 244, 195, 0.32);
     border-radius: 999px;
-    padding: 12px 18px;
+    padding: 10px 15px;
+    background: rgba(0, 244, 195, 0.08);
     text-decoration: none;
     font: 700 14px Arial, sans-serif;
     white-space: nowrap;
 }
 
+.back-link:hover {
+    color: #00f4c3;
+    background: rgba(0, 244, 195, 0.18);
+}
+
 .bet-nav {
     display: flex;
-    gap: 8px;
-    padding: 0 0 30px;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 22px 0 26px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    background: rgba(4, 17, 21, 0.75);
 }
 
 .bet-nav a {
-    color: #d6ffff;
-    font: 700 14px Arial, sans-serif;
-    padding: 12px 18px;
-    border-bottom: 2px solid transparent;
+    padding: 10px 18px;
+    border-radius: 999px;
+    color: #d9fdf7;
+    font: 600 0.98rem Arial, sans-serif;
     text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
 }
 
 .bet-nav a:hover,
 .bet-nav a.active {
+    background: rgba(0, 244, 195, 0.18);
     color: #00f4c3;
-    border-color: #00f4c3;
 }
 
 .bet-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px;
+    grid-template-columns: minmax(0, 1.7fr) 340px;
     gap: 22px;
     align-items: start;
     padding-bottom: 70px;
@@ -74,11 +114,11 @@
 
 .matches-panel,
 .bet-slip {
-    border: 1px solid rgba(0, 244, 195, .38);
-    background: linear-gradient(145deg, rgba(7, 28, 31, .96), rgba(2, 13, 18, .94));
-    border-radius: 12px;
-    padding: clamp(18px, 3vw, 30px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, .25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(7, 22, 30, 0.8);
+    border-radius: 24px;
+    padding: 22px;
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.18);
 }
 .matches-panel {
     display: block;
@@ -184,9 +224,9 @@
 
 .odd-button:hover,
 .market-grid input:checked+.odd-button {
-    color: #071b17;
-    background: #c7f000;
-    border-color: #c7f000;
+    color: #001713;
+    background: #00f4c3;
+    border-color: #00f4c3;
     transform: translateY(-2px);
 }
 
@@ -239,7 +279,7 @@
 
 .selection-odd {
     flex: 0 0 auto;
-    color: #c7f000;
+    color: #00f4c3;
     font: 700 14px Arial, sans-serif;
 }
 
@@ -316,7 +356,7 @@
 }
 
 .bet-footer {
-    margin-top: 10px;
+    margin-top: 0;
     text-align: center;
 }
 
@@ -347,15 +387,26 @@
 }
 
 @media (max-width: 520px) {
+    .bet-shell {
+        padding: 18px 12px 32px;
+    }
 
-    .bet-header,
-    .bet-layout,
-    .bet-nav {
-        width: min(100% - 24px, 1380px);
+    .bet-header {
+        padding: 22px;
+    }
+
+    .bet-layout {
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .bet-nav {
         overflow-x: auto;
+        flex-wrap: nowrap;
+        gap: 4px;
+    }
+
+    .bet-nav a {
+        white-space: nowrap;
     }
 
     .teams {

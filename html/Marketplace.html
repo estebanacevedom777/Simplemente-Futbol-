@@ -1,199 +1,180 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#06191d">
     <title>Marketplace | Simplemente Futbol</title>
+    <meta name="description" content="Compra y vende camisas y trofeos de fútbol en tu comunidad.">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/marketplace.css">
+    <script src="/JS/marketplace.js" defer></script>
 </head>
-<body class="marketplace-body">
+
+<body class="marketplace-page">
     <div class="marketplace-shell">
-        <header class="marketplace-header">
-            <div>
-                <p class="eyebrow">SIMPLEMENTE FUTBOL / MARKETPLACE</p>
-                <h1>Compra lo que mueve el fútbol.</h1>
-                <p class="marketplace-intro">Echa un vistazo a kits, accesorios, coleccionables y novedades del club.</p>
+        <header class="market-header">
+            <a class="market-brand" href="/html/index.html" aria-label="Simplemente Futbol, inicio">
+                <span class="brand-mark" aria-hidden="true">SF</span>
+                <span>SIMPLEMENTE <strong>FUTBOL</strong></span>
+            </a>
+            <div class="market-title">
+                <p class="eyebrow">COMPRA Y VENDE EN TU COMUNIDAD</p>
+                <h1>Marketplace</h1>
             </div>
-            <a class="back-link" href="/html/index.html">Volver al inicio</a>
+            <button class="publish-button" id="open-listing-dialog" type="button">+ Publicar anuncio</button>
         </header>
 
-        <nav class="marketplace-nav" aria-label="Marketplace">
-            <button class="marketplace-tab active" type="button">marketplace</button>
+        <nav class="market-nav" aria-label="Navegación principal">
+            <a href="/html/index.html">Inicio</a>
+            <a href="/html/Bet.html">Bet</a>
+            <a class="active" href="/html/Marketplace.html" aria-current="page">Marketplace</a>
+            <a href="/html/Estadistica.html">Estadísticas</a>
         </nav>
 
-        <main class="marketplace-layout">
-            <section class="catalog-panel" aria-labelledby="catalog-title">
+        <main>
+            <form class="market-search" id="search-form" role="search">
+                <label class="search-field" for="listing-search">
+                    <span>Buscar</span>
+                    <input id="listing-search" name="q" type="search" placeholder="Camisas, trofeos...">
+                </label>
+                <label class="location-field" for="listing-location">
+                    <span>Ubicación</span>
+                    <input id="listing-location" name="location" type="search" value="Bogotá" placeholder="Ciudad o barrio">
+                </label>
+                <button class="search-button" type="submit">Buscar</button>
+            </form>
+
+            <section class="catalog-section" aria-labelledby="catalog-title">
+                <div class="catalog-heading">
+                    <div>
+                        <p class="eyebrow">ANUNCIOS DE TU COMUNIDAD</p>
+                        <h2 id="catalog-title">Camisas y trofeos</h2>
+                    </div>
+                    <button class="publish-button mobile-publish" id="mobile-publish" type="button">+ Publicar</button>
+                </div>
+
                 <div class="catalog-toolbar">
-                    <div class="section-heading">
-                        <div>
-                            <p class="eyebrow">NOVEDADES</p>
-                            <h2 id="catalog-title">Mercado destacado</h2>
-                        </div>
-                        <span class="live-dot">+ 320 OFERTAS</span>
+                    <div class="category-list" role="group" aria-label="Filtrar anuncios">
+                        <button class="category-chip active" type="button" data-category="all" aria-pressed="true">Todo</button>
+                        <button class="category-chip" type="button" data-category="Camisas" aria-pressed="false">Camisas</button>
+                        <button class="category-chip" type="button" data-category="Trofeos" aria-pressed="false">Trofeos</button>
                     </div>
-
-                    <label class="search-field" for="market-search">
-                        <span>Buscar</span>
-                        <input id="market-search" type="search" placeholder="Camiseta, balón, entrenamiento...">
-                    </label>
+                    <div class="catalog-actions">
+                        <button class="favorites-toggle" id="show-favorites" type="button" aria-pressed="false">♡ Guardados</button>
+                        <label class="sort-field" for="sort-listings">
+                            <span>Ordenar</span>
+                            <select id="sort-listings">
+                                <option value="recommended">Recomendados</option>
+                                <option value="newest">Más recientes</option>
+                                <option value="price-asc">Menor precio</option>
+                                <option value="price-desc">Mayor precio</option>
+                            </select>
+                        </label>
+                    </div>
                 </div>
 
-                <div class="sort-row">
-                    <span>Ordenar por</span>
-                    <span class="sort-pill">Relevancia</span>
+                <div class="results-bar">
+                    <p id="results-count" aria-live="polite"></p>
+                    <div class="results-actions">
+                        <span class="results-location"><span aria-hidden="true">●</span><span id="results-location">Bogotá y alrededores</span></span>
+                        <button class="clear-filters" id="clear-filters" type="button">Limpiar</button>
+                    </div>
                 </div>
 
-                <div class="product-grid">
-                    <article class="product-card">
-                        <div class="product-image-wrap">
-                            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=1200&q=80" alt="Jugador con camiseta de fútbol en estadio">
-                            <span class="product-badge">Más vendido</span>
-                        </div>
-                        <div class="product-info"> 
-                            <div class="product-meta">
-                                <span class="product-category">Camisetas</span>
-                                <button class="favorite-button" type="button" aria-label="Guardar camiseta">♡</button>
-                            </div>
-                            <h3>Camiseta Local 2026</h3>
-                            <p>Real Madrid</p>
-                            <div class="product-footer">
-                                <strong>COP $189.000</strong>
-                                <button class="product-button" type="button">Añadir</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-image-wrap">
-                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80" alt="Balón de fútbol realista sobre césped">
-                            <span class="product-badge">Nuevo</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-meta">
-                                <span class="product-category">Entrenamiento</span>
-                                <button class="favorite-button" type="button" aria-label="Guardar balón">♡</button>
-                            </div>
-                            <h3>Balón Oficial Match</h3>
-                            <p>FIFA Pro</p>
-                            <div class="product-footer">
-                                <strong>COP $142.000</strong>
-                                <button class="product-button" type="button">Añadir</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-image-wrap">
-                            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80" alt="Persona con gorra deportiva de fútbol">
-                            <span class="product-badge">Top</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-meta">
-                                <span class="product-category">Accesorios</span>
-                                <button class="favorite-button" type="button" aria-label="Guardar gorra">♡</button>
-                            </div>
-                            <h3>Gorra Clubhouse</h3>
-                            <p>Barcelona</p>
-                            <div class="product-footer">
-                                <strong>COP $89.000</strong>
-                                <button class="product-button" type="button">Añadir</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-image-wrap">
-                            <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?auto=format&fit=crop&w=1200&q=80" alt="Trofeo de fútbol realista en contexto deportivo">
-                            <span class="product-badge">Edición</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-meta">
-                                <span class="product-category">Coleccionables</span>
-                                <button class="favorite-button" type="button" aria-label="Guardar coleccionable">♡</button>
-                            </div>
-                            <h3>Mini Replica Champions</h3>
-                            <p>Colección</p>
-                            <div class="product-footer">
-                                <strong>COP $215.000</strong>
-                                <button class="product-button" type="button">Añadir</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-image-wrap">
-                            <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=1200&q=80" alt="Mochila deportiva para entrenamiento">
-                            <span class="product-badge">Premium</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-meta">
-                                <span class="product-category">Entrenamiento</span>
-                                <button class="favorite-button" type="button" aria-label="Guardar mochila">♡</button>
-                            </div>
-                            <h3>Mochila Training Pro</h3>
-                            <p>Performance</p>
-                            <div class="product-footer">
-                                <strong>COP $249.000</strong>
-                                <button class="product-button" type="button">Añadir</button>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="product-card">
-                        <div class="product-image-wrap">
-                            <img src="https://images.unsplash.com/photo-1556056504-5c7696c4c28d?auto=format&fit=crop&w=1200&q=80" alt="Camiseta deportiva realista de fútbol">
-                            <span class="product-badge">Oferta</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-meta">
-                                <span class="product-category">Camisetas</span>
-                                <button class="favorite-button" type="button" aria-label="Guardar camiseta visitante">♡</button>
-                            </div>
-                            <h3>Camiseta Visitante 2026</h3>
-                            <p>Liverpool</p>
-                            <div class="product-footer">
-                                <strong>COP $195.000</strong>
-                                <button class="product-button" type="button">Añadir</button>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                <div class="listing-grid" id="listing-grid" aria-live="polite"></div>
             </section>
-
-            <aside class="cart-panel" aria-labelledby="cart-title">
-                <div class="cart-header">
-                    <h3 id="cart-title">Tu carrito</h3>
-                    <span id="cart-count">0 artículos</span>
-                </div>
-
-                <div id="cart-items" class="cart-items">
-                    <p class="empty-cart">Aún no has añadido productos.</p>
-                </div>
-
-                <div class="cart-summary">
-                    <div class="summary-row">
-                        <span>Subtotal</span>
-                        <strong id="subtotal">COP $0</strong>
-                    </div>
-                    <div class="summary-row">
-                        <span>Envío</span>
-                        <strong id="shipping">COP $0</strong>
-                    </div>
-                    <div class="summary-row total">
-                        <span>Total</span>
-                        <strong id="total">COP $0</strong>
-                    </div>
-                </div>
-
-                <button class="checkout-button" type="button">Finalizar compra</button>
-            </aside>
         </main>
 
-        <footer class="site-footer bet-footer"><p>Simplemente Futbol · Marketplace oficial</p></footer>
+        <footer class="market-footer">Simplemente Futbol <span>·</span> Compra y vende con respeto</footer>
     </div>
 
-    <script>
-       
-    </script>
+    <dialog class="market-dialog" id="listing-dialog" aria-labelledby="listing-dialog-title">
+        <form class="dialog-form" id="listing-form">
+            <div class="dialog-heading">
+                <div>
+                    <p class="eyebrow">TU COMUNIDAD</p>
+                    <h2 id="listing-dialog-title">Publicar anuncio</h2>
+                </div>
+                <button class="dialog-close" type="button" data-close-dialog aria-label="Cerrar">×</button>
+            </div>
+            <label class="form-field" for="listing-title">Nombre del artículo
+                <input id="listing-title" name="title" type="text" maxlength="70" placeholder="Ej. Camisa local 2026" required>
+            </label>
+            <div class="form-grid">
+                <label class="form-field" for="listing-category">Categoría
+                    <select id="listing-category" name="category" required>
+                        <option value="Camisas">Camisas</option>
+                        <option value="Trofeos">Trofeos</option>
+                    </select>
+                </label>
+                <label class="form-field" for="listing-condition">Estado
+                    <select id="listing-condition" name="condition" required>
+                        <option value="Nuevo">Nuevo</option>
+                        <option value="Como nuevo">Como nuevo</option>
+                        <option value="Buen estado">Buen estado</option>
+                    </select>
+                </label>
+            </div>
+            <div class="form-grid">
+                <label class="form-field" for="listing-price">Precio en COP
+                    <input id="listing-price" name="price" type="number" min="1000" step="1000" placeholder="120000" required>
+                </label>
+                <label class="form-field" for="listing-city">Ciudad o barrio
+                    <input id="listing-city" name="city" type="text" maxlength="50" value="Bogotá" required>
+                </label>
+            </div>
+            <label class="form-field" for="listing-description">Descripción
+                <textarea id="listing-description" name="description" rows="3" maxlength="240" placeholder="Talla, detalles y punto de encuentro" required></textarea>
+            </label>
+            <label class="form-field" for="listing-image">Foto (URL, opcional)
+                <input id="listing-image" name="image" type="url" placeholder="https://...">
+            </label>
+            <p class="dialog-hint">Anuncio de demostración guardado en este navegador.</p>
+            <div class="dialog-actions">
+                <button class="secondary-button" type="button" data-close-dialog>Cancelar</button>
+                <button class="publish-button" type="submit">Publicar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <dialog class="market-dialog detail-dialog" id="detail-dialog" aria-labelledby="detail-title">
+        <div class="detail-content">
+            <button class="dialog-close detail-close" type="button" data-close-dialog aria-label="Cerrar">×</button>
+            <img id="detail-image" class="detail-image" src="" alt="">
+            <p class="eyebrow" id="detail-category"></p>
+            <h2 id="detail-title"></h2>
+            <p class="detail-price" id="detail-price"></p>
+            <p class="detail-description" id="detail-description"></p>
+            <div class="detail-meta"><span id="detail-condition"></span><span id="detail-location"></span></div>
+            <div class="seller-info"><span class="seller-avatar" id="detail-avatar"></span><span>Publicado por <strong id="detail-seller"></strong></span></div>
+            <button class="publish-button contact-button" id="contact-seller" type="button">Enviar mensaje</button>
+        </div>
+    </dialog>
+
+    <dialog class="market-dialog" id="message-dialog" aria-labelledby="message-title">
+        <form class="dialog-form" id="message-form">
+            <div class="dialog-heading">
+                <div>
+                    <p class="eyebrow">CONTACTAR VENDEDOR</p>
+                    <h2 id="message-title">Enviar mensaje</h2>
+                </div>
+                <button class="dialog-close" type="button" data-close-dialog aria-label="Cerrar">×</button>
+            </div>
+            <p class="message-recipient" id="message-recipient"></p>
+            <label class="form-field" for="message-body">Tu mensaje
+                <textarea id="message-body" name="message" rows="4" maxlength="500" placeholder="Hola, ¿sigue disponible?" required></textarea>
+            </label>
+            <p class="dialog-hint">La mensajería es una simulación y no envía datos a un servidor.</p>
+            <div class="dialog-actions">
+                <button class="secondary-button" type="button" data-close-dialog>Cancelar</button>
+                <button class="publish-button" type="submit">Enviar mensaje</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div class="market-toast" id="market-toast" role="status" aria-live="polite"></div>
 </body>
+
 </html>
