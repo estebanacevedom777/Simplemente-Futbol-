@@ -3,22 +3,23 @@
 
 <head>
 	<meta charset="UTF-8">
+	<base href="/Simplemente-Futbol/">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#06191d">
 	<title>Crear cuenta | Simplemente Futbol</title>
-	<link rel="stylesheet" href="/css/styles.css">
-	<link rel="stylesheet" href="/css/auth.css">
-	<script src="/JS/api.js" defer></script>
-	<script src="/JS/auth.js" defer></script>
+	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="css/auth.css">
+	<script src="JS/api.js" defer></script>
+	<script src="JS/auth.js" defer></script>
 </head>
 
 <body class="auth-page">
 	<header class="auth-topbar">
-		<a class="auth-brand" href="/html/index.html" aria-label="Simplemente Futbol, inicio">
+		<a class="auth-brand" href="html/index.html" aria-label="Simplemente Futbol, inicio">
 			<span class="brand-mark" aria-hidden="true">SF</span>
 			<span>SIMPLEMENTE <strong>FUTBOL</strong></span>
 		</a>
-		<a class="auth-back" href="/html/index.html"><span aria-hidden="true">←</span> Volver al inicio</a>
+		<a class="auth-back" href="html/index.html"><span aria-hidden="true">←</span> Volver al inicio</a>
 	</header>
 
 	<main class="auth-main">
@@ -52,12 +53,12 @@
 				<input id="signup-confirm" name="confirm-password" type="password" autocomplete="new-password"
 					minlength="10" placeholder="Repite tu contraseña" required>
 
-				<p class="auth-demo-note">Tu cuenta se guarda en la base SQLite del servidor local. No reutilices contraseñas personales.</p>
+				<p class="auth-demo-note">Tu cuenta se guarda en MySQL usando XAMPP. No reutilices contraseñas personales.</p>
 				<p class="auth-status" data-auth-status aria-live="polite"></p>
 				<button class="auth-submit" type="submit">Crear cuenta <span aria-hidden="true">→</span></button>
 			</form>
 
-			<p class="auth-switch">¿Ya tienes cuenta? <a href="/html/login.html">Iniciar sesión</a></p>
+			<p class="auth-switch">¿Ya tienes cuenta? <a href="html/login.html">Iniciar sesión</a></p>
 		</section>
 	</main>
 

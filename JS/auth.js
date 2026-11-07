@@ -101,7 +101,7 @@
                     setStatus(status, 'Cuenta creada correctamente.', 'success');
                     showSuccess('¡Registro correcto!', 'Tu cuenta se creó correctamente.');
                     window.setTimeout(() => {
-                        window.location.assign('/html/login.html?registered=1');
+                        window.location.assign(new URL('html/login.html?registered=1', document.baseURI));
                     }, 1800);
                 } catch (error) {
                     setStatus(status, error.message, 'error');
@@ -132,7 +132,9 @@
                     });
                     setStatus(status, `¡Bienvenido, ${user.name}!`, 'success');
                     showSuccess('¡Inicio de sesión correcto!', `Bienvenido, ${user.name}.`);
-                    window.setTimeout(() => window.location.assign('/html/index.html'), 1800);
+                    window.setTimeout(() => {
+                        window.location.assign(new URL('html/index.html', document.baseURI));
+                    }, 1800);
                 } catch (error) {
                     setStatus(status, error.message, 'error');
                 } finally {
