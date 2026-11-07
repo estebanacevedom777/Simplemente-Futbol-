@@ -142,6 +142,143 @@
     text-align: left;
 }
 
+.section-heading {
+    margin-bottom: 12px;
+}
+
+.add-match-toggle,
+.add-match-submit {
+    border: 1px solid rgba(0, 244, 195, .38);
+    border-radius: 999px;
+    background: #00f4c3;
+    color: #041d23;
+    padding: 11px 16px;
+    cursor: pointer;
+    font: 700 13px Arial, sans-serif;
+}
+
+.add-match-toggle:hover,
+.add-match-submit:hover {
+    background: #8dffe6;
+}
+
+.demo-note,
+.bet-disclaimer,
+.match-form-actions p,
+.match-feedback {
+    color: #9bb8b6;
+    font: 12px/1.5 Arial, sans-serif;
+}
+
+.demo-note {
+    margin: 0 0 14px;
+}
+
+.add-match-panel {
+    margin: 0 0 18px;
+    padding: 18px;
+    border: 1px solid rgba(0, 244, 195, .22);
+    border-radius: 16px;
+    background: rgba(0, 244, 195, .045);
+}
+
+.add-match-panel[hidden] {
+    display: none;
+}
+
+.add-match-heading,
+.match-form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.add-match-heading h3 {
+    margin: 6px 0 16px;
+    color: #f3fffd;
+    font: 700 1.15rem Arial, sans-serif;
+    text-align: left;
+}
+
+.close-match-form {
+    align-self: flex-start;
+    border: 0;
+    background: transparent;
+    color: #9bb8b6;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.match-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.match-form-grid label {
+    display: grid;
+    gap: 7px;
+    color: #c6d8d6;
+    font: 700 12px Arial, sans-serif;
+}
+
+.match-form-grid input {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    border: 1px solid rgba(255, 255, 255, .13);
+    border-radius: 8px;
+    outline: 0;
+    background: rgba(3, 15, 20, .8);
+    color: #edfdfc;
+    padding: 0 10px;
+    font: 13px Arial, sans-serif;
+}
+
+.match-form-grid input:focus {
+    border-color: #00f4c3;
+}
+
+.match-form-actions {
+    margin-top: 16px;
+}
+
+.match-form-actions p {
+    margin: 0;
+}
+
+.custom-match-card {
+    position: relative;
+}
+
+.delete-custom-match {
+    grid-column: 1 / -1;
+    justify-self: start;
+    border: 0;
+    background: transparent;
+    color: #9bb8b6;
+    padding: 0;
+    cursor: pointer;
+    font: 12px Arial, sans-serif;
+}
+
+.delete-custom-match:hover {
+    color: #ff9a9a;
+}
+
+.match-feedback {
+    min-height: 1.5em;
+    margin: 10px 0 0;
+    color: #00f4c3;
+}
+
+.bet-disclaimer {
+    margin: 14px 0 0;
+    text-align: center;
+}
+
 .live-dot {
     color: #00f4c3;
     font: 700 11px Arial, sans-serif;
@@ -415,5 +552,14 @@
 
     .odd-button {
         padding: 12px 10px;
+    }
+
+    .match-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .match-form-actions {
+        align-items: flex-start;
+        flex-direction: column;
     }
 }

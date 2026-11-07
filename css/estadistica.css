@@ -166,6 +166,30 @@
   padding: 16px;
 }
 
+.stats-demo-note {
+  margin: -4px 0 16px;
+  color: #9ab7b4;
+  font: 0.82rem/1.5 Arial, sans-serif;
+}
+
+.team-select {
+  width: 100%;
+  margin-top: 14px;
+  border: 1px solid rgba(0, 244, 195, 0.25);
+  border-radius: 9px;
+  background: rgba(0, 244, 195, 0.07);
+  color: #b7cfcc;
+  padding: 9px 10px;
+  cursor: pointer;
+  font: 700 0.78rem Arial, sans-serif;
+}
+
+.team-select:hover,
+.team-select[aria-pressed="true"] {
+  background: rgba(0, 244, 195, 0.16);
+  color: #00f4c3;
+}
+
 .team-card-head {
   display: flex;
   align-items: center;
@@ -174,9 +198,66 @@
   margin-bottom: 12px;
 }
 
+.team-identity {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.team-crest {
+  position: relative;
+  display: inline-grid;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.team-crest img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  object-fit: contain;
+}
+
+.team-crest-fallback {
+  color: #00f4c3;
+  font: 800 0.68rem Arial, sans-serif;
+}
+
+.team-crest-small {
+  width: 30px;
+  height: 30px;
+}
+
+.team-crest-large {
+  width: 46px;
+  height: 46px;
+}
+
+.team-crest-chart {
+  width: 26px;
+  height: 26px;
+}
+
+.team-crest-chart img {
+  padding: 3px;
+}
+
 .team-name {
   font-weight: 700;
   color: #f1fffd;
+}
+
+.team-select {
+  display: block;
 }
 
 .metric-badge {
@@ -268,6 +349,11 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.table-wrap td:first-child .team-identity {
+  color: #edfdfc;
+  font-weight: 700;
+}
+
 .table-wrap th {
   color: #9ab7b4;
   font-size: 0.78rem;
@@ -283,6 +369,13 @@
 
 .side-spotlight {
   text-align: center;
+}
+
+.side-spotlight > h3#active-team-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .gauge-wrap {
@@ -341,7 +434,7 @@
   align-items: end;
   justify-content: space-between;
   gap: 12px;
-  min-height: 180px;
+  min-height: 205px;
   padding-top: 8px;
 }
 
@@ -353,9 +446,22 @@
   flex: 1;
 }
 
+.bar-group .team-crest {
+  margin-top: 1px;
+}
+
 .bar-label {
   font-size: 0.7rem;
   color: #9ab7b4;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.bar-value {
+  color: #dffefb;
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
 .bar {
@@ -379,6 +485,83 @@
 .bar-2 i { height: 67%; background: linear-gradient(180deg, rgba(126,247,217,0.82), rgba(126,247,217,0.25)); }
 .bar-3 i { height: 82%; background: linear-gradient(180deg, rgba(255,209,102,0.88), rgba(255,209,102,0.25)); }
 .bar-4 i { height: 58%; background: linear-gradient(180deg, rgba(0,140,255,0.8), rgba(0,140,255,0.25)); }
+
+.chart-metric-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #9ab7b4;
+  font-size: 0.78rem;
+}
+
+.chart-metric-label .filter-select {
+  padding: 8px 10px;
+}
+
+.stats-page.stats-light {
+  background-image: linear-gradient(rgba(225, 244, 241, 0.83), rgba(221, 240, 237, 0.9)),
+    url("https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1800&q=85");
+  color: #123035;
+}
+
+.stats-page.stats-light .stats-header,
+.stats-page.stats-light .stats-card {
+  background: rgba(245, 255, 253, 0.94);
+  border-color: rgba(5, 65, 60, 0.14);
+}
+
+.stats-page.stats-light .stats-header h1,
+.stats-page.stats-light .stats-card-header h2,
+.stats-page.stats-light .stats-card-header h3,
+.stats-page.stats-light .team-name,
+.stats-page.stats-light .ring-gauge span,
+.stats-page.stats-light .table-wrap table {
+  color: #123035;
+}
+
+.stats-page.stats-light .team-chart-card,
+.stats-page.stats-light .team-summary li {
+  background: rgba(5, 65, 60, 0.045);
+  border-color: rgba(5, 65, 60, 0.1);
+}
+
+.stats-page.stats-light .team-summary li,
+.stats-page.stats-light .stats-demo-note,
+.stats-page.stats-light .mini-metrics li,
+.stats-page.stats-light .table-wrap th,
+.stats-page.stats-light .chart-metric-label,
+.stats-page.stats-light .bar-label {
+  color: #496563;
+}
+
+.stats-page.stats-light .mini-metrics strong,
+.stats-page.stats-light .bar-value {
+  color: #123035;
+}
+
+.stats-page.stats-light .ring-gauge::before {
+  background: #f5fffd;
+}
+
+.stats-page.stats-light .filter-select {
+  background: #f5fffd;
+  color: #123035;
+}
+
+.stats-page.stats-light .sparkline {
+  background: rgba(5, 65, 60, 0.07);
+}
+
+.stats-page.stats-light .team-select {
+  color: #15574e;
+}
+
+.table-link {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: 700 0.9rem Arial, sans-serif;
+}
 
 @media (max-width: 980px) {
   .stats-layout {

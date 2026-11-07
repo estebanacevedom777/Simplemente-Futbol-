@@ -15,22 +15,8 @@
 		{ id: 'trophy-vintage', title: 'Copa vintage para colección', category: 'Trofeos', condition: 'Buen estado', price: 76000, city: 'Bogotá, Fontibón', seller: 'Nicolás Díaz', description: 'Copa decorativa de colección, conservada en muy buen estado.', image: photos.Trofeos, createdAt: Date.now() - 1000 * 60 * 60 * 13 }
 	];
 
-	const storageKey = 'sf-market-listings';
-	const favoritesKey = 'sf-market-favorites';
-	const readStorage = (key, fallback) => {
-		try {
-			return JSON.parse(localStorage.getItem(key)) ?? fallback;
-		} catch {
-			return fallback;
-		}
-	};
-	const storedListings = readStorage(storageKey, []);
-	const storedFavorites = readStorage(favoritesKey, []);
-	const userListings = Array.isArray(storedListings)
-		? storedListings.filter((item) => item && typeof item.id === 'string'
-			&& ['Camisas', 'Trofeos'].includes(item.category) && Number.isFinite(Number(item.price)))
-		: [];
-	const favorites = new Set(Array.isArray(storedFavorites) ? storedFavorites : []);
+	let userListings = [];
+	const favorites = new Set();
 
 	const searchInput = document.querySelector('#listing-search');
 	const locationInput = document.querySelector('#listing-location');
@@ -58,14 +44,6 @@
 		toast.classList.add('visible');
 		window.clearTimeout(toastTimer);
 		toastTimer = window.setTimeout(() => toast.classList.remove('visible'), 3200);
-	}
-
-	function save(key, value) {
-		try {
-			localStorage.setItem(key, JSON.stringify(value));
-		} catch {
-			notify('No se pudo guardar el cambio en este navegador.');
-		}
 	}
 
 	function element(tag, className, text) {
@@ -210,7 +188,7 @@
 		render();
 	});
 
-	grid.addEventListener('click', (event) => {
+	grid.addEventListener('click', async (event) => {
 		const button = event.target.closest('button[data-action]');
 		if (!button) return;
 		if (button.dataset.action === 'clear') {
@@ -223,13 +201,18 @@
 			openDetails(item);
 			return;
 		}
-		if (favorites.has(item.id)) {
-			favorites.delete(item.id);
-		} else {
-			favorites.add(item.id);
+		const isFavorite = favorites.has(item.id);
+		try {
+			await window.SF_API.post('/api/favorites', {
+				listingId: item.id,
+				favorite: !isFavorite
+			});
+			if (isFavorite) favorites.delete(item.id);
+			else favorites.add(item.id);
+			render();
+		} catch (error) {
+			notify(error.message);
 		}
-		save(favoritesKey, [...favorites]);
-		render();
 	});
 
 	document.querySelector('#clear-filters').addEventListener('click', clearFilters);
@@ -245,28 +228,33 @@
 		});
 	});
 
-	listingForm.addEventListener('submit', (event) => {
+	listingForm.addEventListener('submit', async (event) => {
 		event.preventDefault();
 		const data = new FormData(listingForm);
 		const item = {
-			id: `user-${Date.now()}`,
 			title: String(data.get('title')).trim(),
 			category: String(data.get('category')),
 			condition: String(data.get('condition')),
 			price: Number(data.get('price')),
 			city: String(data.get('city')).trim(),
-			seller: 'Tú',
 			description: String(data.get('description')).trim(),
-			image: String(data.get('image')).trim() || photos[String(data.get('category'))],
-			createdAt: Date.now()
+			image: String(data.get('image')).trim()
 		};
-		userListings.unshift(item);
-		save(storageKey, userListings);
-		listingForm.reset();
-		document.querySelector('#listing-city').value = 'Bogotá';
-		listingDialog.close();
-		clearFilters();
-		notify('Anuncio publicado en este navegador.');
+		const publishButton = listingForm.querySelector('[type="submit"]');
+		publishButton.disabled = true;
+		try {
+			const { listing } = await window.SF_API.post('/api/listings', item);
+			userListings.unshift(listing);
+			listingForm.reset();
+			document.querySelector('#listing-city').value = 'Bogotá';
+			listingDialog.close();
+			clearFilters();
+			notify('Anuncio publicado en la comunidad.');
+		} catch (error) {
+			notify(error.message);
+		} finally {
+			publishButton.disabled = false;
+		}
 	});
 
 	document.querySelector('#contact-seller').addEventListener('click', () => {
@@ -285,4 +273,10 @@
 	});
 
 	render();
+	window.SF_API.request('/api/listings').then(({ listings: savedListings, favorites: savedFavorites }) => {
+		userListings = savedListings;
+		favorites.clear();
+		savedFavorites.forEach((id) => favorites.add(id));
+		render();
+	}).catch((error) => notify(error.message));
 })();

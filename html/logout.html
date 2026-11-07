@@ -8,6 +8,8 @@
     <title>Cerrar sesión | Simplemente Futbol</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/auth.css">
+    <script src="/JS/api.js" defer></script>
+    <script src="/JS/auth.js" defer></script>
 </head>
 
 <body class="auth-page">
@@ -23,11 +25,14 @@
         <section class="auth-panel logout-panel" aria-labelledby="logout-title">
             <p class="auth-eyebrow">HASTA EL PRÓXIMO PARTIDO</p>
             <h1 id="logout-title">¿Quieres salir?</h1>
-            <p class="auth-description">Puedes volver cuando quieras para seguir disfrutando de Simplemente Futbol.</p>
-            <div class="logout-actions">
-                <a class="auth-submit" href="/html/index.html">Cerrar sesión <span aria-hidden="true">→</span></a>
-                <a class="logout-cancel" href="/html/index.html">Seguir en el sitio</a>
+            <p class="auth-description" id="logout-description">Comprobando la sesión del servidor...</p>
+            <p class="auth-status" id="logout-status" aria-live="polite"></p>
+            <div class="logout-actions" id="logout-actions">
+                <button class="auth-submit" id="confirm-logout" type="button">Cerrar sesión <span aria-hidden="true">→</span></button>
+                <a class="logout-cancel" href="/html/index.html">Cancelar y volver al inicio</a>
             </div>
+            <a class="logout-home-link" id="logout-home-link" href="/html/index.html" hidden>Volver al inicio</a>
+            <p class="auth-demo-note">La sesión se administra desde el servidor local y se cierra al confirmar.</p>
         </section>
     </main>
 

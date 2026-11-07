@@ -8,6 +8,7 @@
 	<title>Crear cuenta | Simplemente Futbol</title>
 	<link rel="stylesheet" href="/css/styles.css">
 	<link rel="stylesheet" href="/css/auth.css">
+	<script src="/JS/api.js" defer></script>
 	<script src="/JS/auth.js" defer></script>
 </head>
 
@@ -28,20 +29,30 @@
 
 			<form class="auth-form" data-auth-form="signup">
 				<label for="signup-name">Nombre</label>
-				<input id="signup-name" name="name" type="text" autocomplete="name" placeholder="Tu nombre" required>
+				<input id="signup-name" name="name" type="text" autocomplete="name" minlength="2" maxlength="60"
+					placeholder="Tu nombre" aria-describedby="signup-name-help" required>
+				<p class="auth-help" id="signup-name-help">Usa entre 2 y 60 letras. Se permiten espacios, guiones y apóstrofos.</p>
 
 				<label for="signup-email">Correo electrónico</label>
-				<input id="signup-email" name="email" type="email" autocomplete="email" placeholder="nombre@correo.com"
+				<input id="signup-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="nombre@correo.com"
 					required>
 
 				<label for="signup-password">Contraseña</label>
-				<input id="signup-password" name="password" type="password" autocomplete="new-password" minlength="8"
-					placeholder="Mínimo 8 caracteres" required>
+				<input id="signup-password" name="password" type="password" autocomplete="new-password" minlength="10" maxlength="256"
+					placeholder="Crea una contraseña segura" aria-describedby="password-rules" required>
+				<ul class="password-rules" id="password-rules" aria-label="Requisitos de la contraseña">
+					<li data-rule="length">10 caracteres o más</li>
+					<li data-rule="upper">Una letra mayúscula</li>
+					<li data-rule="lower">Una letra minúscula</li>
+					<li data-rule="number">Un número</li>
+					<li data-rule="symbol">Un símbolo</li>
+				</ul>
 
 				<label for="signup-confirm">Confirmar contraseña</label>
 				<input id="signup-confirm" name="confirm-password" type="password" autocomplete="new-password"
-					minlength="8" placeholder="Repite tu contraseña" required>
+					minlength="10" placeholder="Repite tu contraseña" required>
 
+				<p class="auth-demo-note">Tu cuenta se guarda en la base SQLite del servidor local. No reutilices contraseñas personales.</p>
 				<p class="auth-status" data-auth-status aria-live="polite"></p>
 				<button class="auth-submit" type="submit">Crear cuenta <span aria-hidden="true">→</span></button>
 			</form>
@@ -49,6 +60,19 @@
 			<p class="auth-switch">¿Ya tienes cuenta? <a href="/html/login.html">Iniciar sesión</a></p>
 		</section>
 	</main>
+
+	<div class="auth-success-overlay" data-success-overlay hidden role="status" aria-live="assertive" aria-atomic="true">
+		<div class="auth-success-card">
+			<div class="success-checkmark" aria-hidden="true">
+				<svg viewBox="0 0 72 72" focusable="false">
+					<circle class="success-check-circle" cx="36" cy="36" r="32"></circle>
+					<path class="success-check-path" d="M20 37l10 10 22-23"></path>
+				</svg>
+			</div>
+			<h2 data-success-title>¡Registro correcto!</h2>
+			<p data-success-message>Tu cuenta se creó correctamente.</p>
+		</div>
+	</div>
 
 	<footer class="auth-footer">Simplemente Futbol <span>·</span> Pasión por el juego</footer>
 </body>

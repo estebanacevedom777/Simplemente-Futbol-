@@ -7,6 +7,7 @@
     <title>Bet | Simplemente Futbol</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/bet.css">
+    <script src="/JS/api.js" defer></script>
     <script src="/JS/bet.js" defer></script>
 </head>
 
@@ -26,17 +27,56 @@
             <a class="active" href="/html/Bet.html" aria-current="page">Bet</a>
             <a href="/html/Marketplace.html">Marketplace</a>
             <a href="/html/Estadistica.html">Estadísticas</a>
+            <a href="/html/login.html">Iniciar sesión</a>
+            <a href="/html/signup.html">Crear cuenta</a>
         </nav>
 
         <main class="bet-layout" id="partidos">
             <section class="matches-panel" aria-labelledby="matches-title">
                 <div class="section-heading">
                     <div>
-                        <p class="eyebrow">HOY / 21 SEPTIEMBRE</p>
+                        <p class="eyebrow">TU CANCHA / TUS PRONÓSTICOS</p>
                         <h2 id="matches-title">Mercados destacados</h2>
                     </div>
-                    <span class="live-dot">EN VIVO</span>
+                    <button class="add-match-toggle" id="toggle-match-form" type="button" aria-expanded="false" aria-controls="add-match-form">+ Agregar partido</button>
                 </div>
+                <p class="demo-note">Partidos y cuotas de demostración. No se realizan apuestas ni transacciones.</p>
+                <form class="add-match-panel" id="add-match-form" hidden>
+                    <div class="add-match-heading">
+                        <div>
+                            <p class="eyebrow">ARMA TU ENCUENTRO</p>
+                            <h3>Agregar partido personalizado</h3>
+                        </div>
+                        <button class="close-match-form" id="close-match-form" type="button" aria-label="Cerrar formulario">×</button>
+                    </div>
+                    <div class="match-form-grid">
+                        <label>Competición
+                            <input name="competition" type="text" maxlength="40" placeholder="Ej. Liga local" required>
+                        </label>
+                        <label>Fecha y hora
+                            <input name="kickoff" type="datetime-local" required>
+                        </label>
+                        <label>Equipo local
+                            <input name="homeTeam" type="text" maxlength="40" placeholder="Equipo local" required>
+                        </label>
+                        <label>Equipo visitante
+                            <input name="awayTeam" type="text" maxlength="40" placeholder="Equipo visitante" required>
+                        </label>
+                        <label>Cuota local
+                            <input name="homeOdds" type="number" min="1.01" max="1000" step="0.01" placeholder="2.00" required>
+                        </label>
+                        <label>Cuota empate
+                            <input name="drawOdds" type="number" min="1.01" max="1000" step="0.01" placeholder="3.00" required>
+                        </label>
+                        <label>Cuota visitante
+                            <input name="awayOdds" type="number" min="1.01" max="1000" step="0.01" placeholder="2.50" required>
+                        </label>
+                    </div>
+                    <div class="match-form-actions">
+                        <p>Se guardará en la base de datos. Inicia sesión para agregar un partido.</p>
+                        <button class="add-match-submit" type="submit">Guardar partido</button>
+                    </div>
+                </form>
                 <article class="match-card">
                     <div class="match-meta"><span>LaLiga</span><span>16:00</span></div>
                     <div class="teams"><strong>Real Madrid</strong><span>VS</span><strong>Barcelona</strong></div>
@@ -73,6 +113,8 @@
                             for="juventus"><span>2</span><strong>2.55</strong></label>
                     </div>
                 </article>
+                <div id="custom-matches" aria-live="polite"></div>
+                <p class="match-feedback" id="match-feedback" role="status" aria-live="polite"></p>
             </section>
 
             <aside class="bet-slip" aria-labelledby="slip-title">
@@ -88,6 +130,7 @@
                 <div class="slip-total"><span>Cuota total</span><strong>Se calcula al confirmar</strong></div>
                 <div class="slip-total potential"><span>Ganancia potencial</span><strong>Según selección</strong></div>
                 <a class="place-bet" href="#partidos">Revisar pronóstico</a>
+                <p class="bet-disclaimer">Simulación educativa: este sitio no acepta apuestas reales.</p>
             </aside>
         </main>
 

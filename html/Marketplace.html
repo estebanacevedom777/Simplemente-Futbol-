@@ -9,6 +9,7 @@
     <meta name="description" content="Compra y vende camisas y trofeos de fútbol en tu comunidad.">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/marketplace.css">
+    <script src="/JS/api.js" defer></script>
     <script src="/JS/marketplace.js" defer></script>
 </head>
 
@@ -31,6 +32,8 @@
             <a href="/html/Bet.html">Bet</a>
             <a class="active" href="/html/Marketplace.html" aria-current="page">Marketplace</a>
             <a href="/html/Estadistica.html">Estadísticas</a>
+            <a href="/html/login.html">Iniciar sesión</a>
+            <a href="/html/signup.html">Crear cuenta</a>
         </nav>
 
         <main>
@@ -131,7 +134,7 @@
             <label class="form-field" for="listing-image">Foto (URL, opcional)
                 <input id="listing-image" name="image" type="url" placeholder="https://...">
             </label>
-            <p class="dialog-hint">Anuncio de demostración guardado en este navegador.</p>
+            <p class="dialog-hint">Publicar anuncios requiere una cuenta. Los anuncios quedan guardados en la base de datos.</p>
             <div class="dialog-actions">
                 <button class="secondary-button" type="button" data-close-dialog>Cancelar</button>
                 <button class="publish-button" type="submit">Publicar</button>

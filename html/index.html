@@ -1,51 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simplemente futbol</title>
+    <meta name="description" content="Simplemente Futbol: información, análisis y pasión por el juego.">
+    <title>Simplemente Futbol</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <script src="/JS/home.js" defer></script>
 </head>
 <body class="home-page">
- <center>
-    <h1>
-        Bienvenido a Simplemente Futbol.
-    </h1>
-</center>
-<nav>
-    <a href="/html/Bet.html">Bet</a>
-    <a href="/html/Marketplace.html">Marketplace</a>
-    <a href="/html/Estadistica.html">Estadísticas</a>
-    <a href="/html/login.html">Iniciar sesión</a>
-    <a href="/html/signup.html">Crear cuenta</a>
-    <a href="/html/logout.html">Cerrar sesión</a>
-</nav>
+    <header class="home-header">
+        <p class="eyebrow">SIMPLEMENTE FUTBOL / INFORMACIÓN Y ANÁLISIS</p>
+        <h1>El fútbol, contado con rigor y pasión.</h1>
+        <p class="home-lead">Historias, ideas y detalles que hacen que cada partido se juegue más allá de los 90 minutos.</p>
+        <a class="home-cta" href="#historias">Explorar historias <span aria-hidden="true">↓</span></a>
+    </header>
 
+    <nav aria-label="Navegación principal">
+        <a href="/html/index.html" aria-current="page">Inicio</a>
+        <a href="/html/Bet.html">Bet</a>
+        <a href="/html/Marketplace.html">Marketplace</a>
+        <a href="/html/Estadistica.html">Estadísticas</a>
+        <a href="/html/login.html">Iniciar sesión</a>
+        <a href="/html/signup.html">Crear cuenta</a>
+        <a href="/html/logout.html">Cerrar sesión</a>
+    </nav>
 
-<p>El fútbol, contado con rigor, análisis y pasión.
-Bienvenidos a un espacio dedicado a la información y al análisis de 
-uno de los deportes que más emociones despierta en el mundo.
-Aquí encontrarás las noticias más relevantes, el análisis de los 
-partidos, entrevistas con protagonistas, declaraciones, contexto y 
-las historias que marcan la actualidad del fútbol.
-Nuestro propósito es informar con rigor, aportar una mirada crítica y 
-ofrecer contenidos de calidad que permitan comprender el juego más
- allá de los 90 minutos.
-Información que trasciende el resultado. Análisis que entiende el 
-juego. Pasión que nunca termina.</p>
+    <main class="home-content">
+        <section class="intro-panel" aria-labelledby="intro-title">
+            <div>
+                <p class="eyebrow">MÁS QUE UN RESULTADO</p>
+                <h2 id="intro-title">Entender el juego también es vivirlo.</h2>
+            </div>
+            <p>Un espacio dedicado a las noticias, el análisis de los partidos y las historias que marcan al fútbol. Contexto, táctica y pasión para mirar cada encuentro con otros ojos.</p>
+        </section>
 
-    <center>
-    <section>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjFbBnd2g9hB3_ZlhEvNAIZuO4xvukxvaJ1ncntLz7XrGyblRLFnUEhQs&s=10" alt="Zinedine Zidane">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWZu9KdgJzSqmj5w05ygr5D7bK4Z59GEbMReOjfyxI8X8psHjlJjKlS8U&s=10" alt="Barcelona 09">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_jwUzKpWDJ4vmPxiqWV5FOBbZOn63gqbMCLkLTLul7KEGvImSLI8f49k&s=10" alt="CR7">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6_0a-yAlxtYN5gZNmDAeACQayHXiJwtq3Bnv31POTkfiP0Yh7PO-zDTk&s=10" alt="MESSI">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtR4KnyO5S1l8C_t7YRJA8MOEdYu7YdmerP7TkVytUiLxCHdKueQ_gqKFF&s=10" alt="ONCE CALDAS">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2oi-15CIl518NUSmp3kC4MF8Ivgo74RYrtZ05D8QyemNW8ZcSw9fzp24&s=10" alt="BOCA">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGBo9EiZw4do-wF4Zc3HIXcOB3gV2fmk6W6WLhZBKDfqU34urzvkIGP3g&s=10" alt="AJAX">
-        <img src="https://www.infobae.com/resizer/v2/C6XERTG4DZG7RDWECBTDUYQJYE.jpg?auth=ea5f8ab190457325c8bf3075259fbdf623a0a9cdf3d2cb5b39c6c681293baaff&smart=true&width=350&height=441&quality=85" alt="86">
-    </section>
-    </center>
-  <footer class="site-footer bet-footer"><p>Simplemente Futbol · Apuestas responsables</p></footer>
+        <section class="gallery-panel" aria-labelledby="gallery-title">
+            <div class="home-section-heading">
+                <div>
+                    <p class="eyebrow">MOMENTOS QUE NOS UNEN</p>
+                    <h2 id="gallery-title">La pasión en imágenes</h2>
+                </div>
+                <span class="section-note">Pasa el cursor para descubrir</span>
+            </div>
+            <div class="home-gallery">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjFbBnd2g9hB3_ZlhEvNAIZuO4xvukxvaJ1ncntLz7XrGyblRLFnUEhQs&s=10" alt="Zinedine Zidane en un momento de juego">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWZu9KdgJzSqmj5w05ygr5D7bK4Z59GEbMReOjfyxI8X8psHjlJjKlS8U&s=10" alt="El Barcelona celebra una jugada">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_jwUzKpWDJ4vmPxiqWV5FOBbZOn63gqbMCLkLTLul7KEGvImSLI8f49k&s=10" alt="Cristiano Ronaldo en el campo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6_0a-yAlxtYN5gZNmDAeACQayHXiJwtq3Bnv31POTkfiP0Yh7PO-zDTk&s=10" alt="Lionel Messi durante un partido">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtR4KnyO5S1l8C_t7YRJA8MOEdYu7YdmerP7TkVytUiLxCHdKueQ_gqKFF&s=10" alt="Afición del Once Caldas">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2oi-15CIl518NUSmp3kC4MF8Ivgo74RYrtZ05D8QyemNW8ZcSw9fzp24&s=10" alt="Afición de Boca Juniors">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGBo9EiZw4do-wF4Zc3HIXcOB3gV2fmk6W6WLhZBKDfqU34urzvkIGP3g&s=10" alt="El Ajax en el campo">
+                <img src="https://www.infobae.com/resizer/v2/C6XERTG4DZG7RDWECBTDUYQJYE.jpg?auth=ea5f8ab190457325c8bf3075259fbdf623a0a9cdf3d2cb5b39c6c681293baaff&smart=true&width=350&height=441&quality=85" alt="Celebración de Argentina en 1986">
+            </div>
+        </section>
 
+        <section class="stories-panel" id="historias" aria-labelledby="stories-title">
+            <div class="home-section-heading stories-heading">
+                <div>
+                    <p class="eyebrow">IDEAS PARA DISFRUTAR EL PARTIDO</p>
+                    <h2 id="stories-title">Explora nuestras historias</h2>
+                </div>
+                <p class="saved-count" aria-live="polite"><span id="saved-count">0</span> guardadas</p>
+            </div>
+
+            <div class="story-tools">
+                <label class="story-search">
+                    <span class="visually-hidden">Buscar historias</span>
+                    <span aria-hidden="true">⌕</span>
+                    <input id="story-search" type="search" placeholder="Busca por tema o palabra..." autocomplete="off">
+                </label>
+                <div class="story-filters" role="group" aria-label="Filtrar historias por categoría">
+                    <button class="filter-chip active" type="button" data-category="Todas" aria-pressed="true">Todas</button>
+                    <button class="filter-chip" type="button" data-category="Táctica" aria-pressed="false">Táctica</button>
+                    <button class="filter-chip" type="button" data-category="Historias" aria-pressed="false">Historias</button>
+                    <button class="filter-chip" type="button" data-category="Cultura" aria-pressed="false">Cultura</button>
+                    <button class="filter-chip" type="button" data-category="Guardadas" aria-pressed="false">Guardadas</button>
+                </div>
+            </div>
+            <p class="story-results" id="story-results" aria-live="polite"></p>
+            <div class="story-grid" id="story-grid"></div>
+            <p class="story-empty" id="story-empty" hidden>No encontramos historias con esos criterios. Prueba otra búsqueda o categoría.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer bet-footer">
+        <p>Simplemente Futbol · Información que trasciende el resultado.</p>
+    </footer>
 </body>
+</html>

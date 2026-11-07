@@ -7,6 +7,7 @@
     <title>Estadísticas | Simplemente Futbol</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/estadistica.css">
+    <script src="/JS/estadistica.js" defer></script>
 </head>
 
 <body class="stats-page">
@@ -18,7 +19,7 @@
             </div>
             <div class="stats-header-actions">
                 <span class="user-badge">Invitado</span>
-                <button class="ghost-button" type="button">Modo claro</button>
+                <button class="ghost-button" id="toggle-theme" type="button" aria-pressed="false">Modo claro</button>
             </div>
         </header>
 
@@ -37,41 +38,16 @@
                             <p class="eyebrow">Comparativa global</p>
                             <h2>Rendimiento por equipos</h2>
                         </div>
-                        <select class="filter-select" aria-label="Filtrar liga">
-                            <option>Premier League</option>
-                            <option>LaLiga</option>
-                            <option>Serie A</option>
-                            <option>Liga MX</option>
+                        <select class="filter-select" id="league-filter" aria-label="Filtrar liga">
+                            <option value="Premier League">Premier League</option>
+                            <option value="LaLiga">LaLiga</option>
+                            <option value="Serie A">Serie A</option>
+                            <option value="Liga MX">Liga MX</option>
                         </select>
                     </div>
 
-                    <div class="team-chart-grid">
-                        <article class="team-chart-card">
-                            <div class="team-card-head">
-                                <span class="team-name">Real Madrid</span>
-                                <span class="metric-badge positive">+12%</span>
-                            </div>
-                            <div class="sparkline sparkline-up" aria-label="Gráfico Real Madrid"></div>
-                            <ul class="mini-metrics">
-                                <li><span>PPDA</span><strong>9.4</strong></li>
-                                <li><span>xG</span><strong>2.41</strong></li>
-                                <li><span>Pose.</span><strong>62%</strong></li>
-                            </ul>
-                        </article>
-
-                        <article class="team-chart-card">
-                            <div class="team-card-head">
-                                <span class="team-name">Barcelona</span>
-                                <span class="metric-badge positive">+8%</span>
-                            </div>
-                            <div class="sparkline sparkline-up-alt" aria-label="Gráfico Barcelona"></div>
-                            <ul class="mini-metrics">
-                                <li><span>PPDA</span><strong>10.1</strong></li>
-                                <li><span>xG</span><strong>2.18</strong></li>
-                                <li><span>Pose.</span><strong>58%</strong></li>
-                            </ul>
-                        </article>
-
+                    <p class="stats-demo-note">Datos de demostración para explorar el panel; no representan resultados en vivo.</p>
+                    <div class="team-chart-grid" id="team-chart-grid">
                         <article class="team-chart-card">
                             <div class="team-card-head">
                                 <span class="team-name">Arsenal</span>
@@ -80,21 +56,47 @@
                             <div class="sparkline sparkline-up" aria-label="Gráfico Arsenal"></div>
                             <ul class="mini-metrics">
                                 <li><span>PPDA</span><strong>8.8</strong></li>
-                                <li><span>xG</span><strong>2.76</strong></li>
+                                <li><span>xG prom.</span><strong>2.42</strong></li>
                                 <li><span>Pose.</span><strong>61%</strong></li>
                             </ul>
                         </article>
 
                         <article class="team-chart-card">
                             <div class="team-card-head">
-                                <span class="team-name">Bayern</span>
-                                <span class="metric-badge neutral">+3%</span>
+                                <span class="team-name">Liverpool</span>
+                                <span class="metric-badge positive">+11%</span>
                             </div>
-                            <div class="sparkline sparkline-flat" aria-label="Gráfico Bayern"></div>
+                            <div class="sparkline sparkline-up-alt" aria-label="Gráfico Liverpool"></div>
                             <ul class="mini-metrics">
-                                <li><span>PPDA</span><strong>11.2</strong></li>
-                                <li><span>xG</span><strong>2.05</strong></li>
-                                <li><span>Pose.</span><strong>57%</strong></li>
+                                <li><span>PPDA</span><strong>9.2</strong></li>
+                                <li><span>xG prom.</span><strong>2.37</strong></li>
+                                <li><span>Pose.</span><strong>59%</strong></li>
+                            </ul>
+                        </article>
+
+                        <article class="team-chart-card">
+                            <div class="team-card-head">
+                                <span class="team-name">Manchester City</span>
+                                <span class="metric-badge positive">+10%</span>
+                            </div>
+                            <div class="sparkline sparkline-up" aria-label="Gráfico Manchester City"></div>
+                            <ul class="mini-metrics">
+                                <li><span>PPDA</span><strong>10.4</strong></li>
+                                <li><span>xG prom.</span><strong>2.29</strong></li>
+                                <li><span>Pose.</span><strong>66%</strong></li>
+                            </ul>
+                        </article>
+
+                        <article class="team-chart-card">
+                            <div class="team-card-head">
+                                <span class="team-name">Aston Villa</span>
+                                <span class="metric-badge neutral">+6%</span>
+                            </div>
+                            <div class="sparkline sparkline-flat" aria-label="Gráfico Aston Villa"></div>
+                            <ul class="mini-metrics">
+                                <li><span>PPDA</span><strong>11.7</strong></li>
+                                <li><span>xG prom.</span><strong>1.90</strong></li>
+                                <li><span>Pose.</span><strong>53%</strong></li>
                             </ul>
                         </article>
                     </div>
@@ -103,7 +105,7 @@
                 <div class="stats-card">
                     <div class="stats-card-header compact-title">
                         <h3>Tabla comparativa</h3>
-                        <a href="#" class="table-link">Ver detalle</a>
+                        <button class="table-link" id="export-stats" type="button">Exportar CSV</button>
                     </div>
 
                     <div class="table-wrap">
@@ -112,26 +114,12 @@
                                 <tr>
                                     <th>Equipo</th>
                                     <th>GF</th>
-                                    <th>xG</th>
+                                    <th>xG total</th>
                                     <th>PPDA</th>
                                     <th>P</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Real Madrid</td>
-                                    <td>31</td>
-                                    <td>27.8</td>
-                                    <td>9.4</td>
-                                    <td>79</td>
-                                </tr>
-                                <tr>
-                                    <td>Barcelona</td>
-                                    <td>28</td>
-                                    <td>25.9</td>
-                                    <td>10.1</td>
-                                    <td>74</td>
-                                </tr>
+                            <tbody id="team-table-body">
                                 <tr>
                                     <td>Arsenal</td>
                                     <td>34</td>
@@ -140,11 +128,25 @@
                                     <td>81</td>
                                 </tr>
                                 <tr>
-                                    <td>Bayern</td>
-                                    <td>27</td>
-                                    <td>24.6</td>
-                                    <td>11.2</td>
-                                    <td>70</td>
+                                    <td>Liverpool</td>
+                                    <td>32</td>
+                                    <td>28.4</td>
+                                    <td>9.2</td>
+                                    <td>78</td>
+                                </tr>
+                                <tr>
+                                    <td>Manchester City</td>
+                                    <td>30</td>
+                                    <td>27.5</td>
+                                    <td>10.4</td>
+                                    <td>76</td>
+                                </tr>
+                                <tr>
+                                    <td>Aston Villa</td>
+                                    <td>26</td>
+                                    <td>22.8</td>
+                                    <td>11.7</td>
+                                    <td>67</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -155,15 +157,15 @@
             <aside class="stats-aside">
                 <div class="stats-card side-spotlight">
                     <p class="eyebrow">Equipo activo</p>
-                    <h3>Real Madrid</h3>
+                    <h3 id="active-team-name">Arsenal</h3>
                     <div class="gauge-wrap">
-                        <div class="ring-gauge">
-                            <span>78%</span>
+                        <div class="ring-gauge" id="team-rating-gauge">
+                            <span id="team-rating">84%</span>
                         </div>
                     </div>
-                    <ul class="team-summary">
-                        <li><span>Presión alta</span><strong>86%</strong></li>
-                        <li><span>Goles esperados</span><strong>2.41</strong></li>
+                    <ul class="team-summary" id="team-summary">
+                        <li><span>Presión alta</span><strong>82%</strong></li>
+                        <li><span>xG promedio</span><strong>2.42</strong></li>
                         <li><span>Ritmo</span><strong>Alto</strong></li>
                     </ul>
                 </div>
@@ -171,22 +173,30 @@
                 <div class="stats-card">
                     <div class="stats-card-header compact-title">
                         <h3>Gráficos rápidos</h3>
+                        <label class="chart-metric-label" for="chart-metric">
+                            <span>Métrica</span>
+                            <select class="filter-select" id="chart-metric">
+                                <option value="pressure">Presión</option>
+                                <option value="xg">xG</option>
+                                <option value="possession">Posesión</option>
+                            </select>
+                        </label>
                     </div>
-                    <div class="bars-chart" aria-label="Comparación de presión">
+                    <div class="bars-chart" id="metric-chart" aria-label="Comparación de presión">
                         <div class="bar-group">
-                            <span class="bar-label">RM</span>
+                            <span class="bar-label">ARS</span>
                             <div class="bar bar-1"><i></i></div>
                         </div>
                         <div class="bar-group">
-                            <span class="bar-label">BRC</span>
+                            <span class="bar-label">LIV</span>
                             <div class="bar bar-2"><i></i></div>
                         </div>
                         <div class="bar-group">
-                            <span class="bar-label">ARS</span>
+                            <span class="bar-label">MCI</span>
                             <div class="bar bar-3"><i></i></div>
                         </div>
                         <div class="bar-group">
-                            <span class="bar-label">BAY</span>
+                            <span class="bar-label">AVL</span>
                             <div class="bar bar-4"><i></i></div>
                         </div>
                     </div>

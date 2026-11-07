@@ -8,6 +8,7 @@
 	<title>Iniciar sesión | Simplemente Futbol</title>
 	<link rel="stylesheet" href="/css/styles.css">
 	<link rel="stylesheet" href="/css/auth.css">
+	<script src="/JS/api.js" defer></script>
 	<script src="/JS/auth.js" defer></script>
 </head>
 
@@ -28,11 +29,14 @@
 
 			<form class="auth-form" data-auth-form="login">
 				<label for="login-email">Correo electrónico</label>
-				<input id="login-email" name="email" type="email" autocomplete="email" placeholder="nombre@correo.com" required>
+				<input id="login-email" name="email" type="email" autocomplete="email" maxlength="254"
+					placeholder="nombre@correo.com" required>
 
 				<label for="login-password">Contraseña</label>
-				<input id="login-password" name="password" type="password" autocomplete="current-password" placeholder="Tu contraseña" required>
+				<input id="login-password" name="password" type="password" autocomplete="current-password"
+					minlength="10" placeholder="Tu contraseña" required>
 
+				<p class="auth-demo-note">Acceso conectado a la base de datos local del proyecto. No uses contraseñas reales de otros sitios.</p>
 				<p class="auth-status" data-auth-status aria-live="polite"></p>
 				<button class="auth-submit" type="submit">Iniciar sesión <span aria-hidden="true">→</span></button>
 			</form>
@@ -40,6 +44,19 @@
 			<p class="auth-switch">¿Aún no tienes cuenta? <a href="/html/signup.html">Crear cuenta</a></p>
 		</section>
 	</main>
+
+	<div class="auth-success-overlay" data-success-overlay hidden role="status" aria-live="assertive" aria-atomic="true">
+		<div class="auth-success-card">
+			<div class="success-checkmark" aria-hidden="true">
+				<svg viewBox="0 0 72 72" focusable="false">
+					<circle class="success-check-circle" cx="36" cy="36" r="32"></circle>
+					<path class="success-check-path" d="M20 37l10 10 22-23"></path>
+				</svg>
+			</div>
+			<h2 data-success-title>¡Inicio de sesión correcto!</h2>
+			<p data-success-message>Validación completada.</p>
+		</div>
+	</div>
 
 	<footer class="auth-footer">Simplemente Futbol <span>·</span> Pasión por el juego</footer>
 </body>
