@@ -3,16 +3,48 @@
 	if (!grid) return;
 
 	const photos = {
-		Camisas: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=85',
-		Trofeos: 'https://images.unsplash.com/photo-1543351611-58f69d7c1781?auto=format&fit=crop&w=900&q=85'
+		localShirt: {
+			url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/National_Football_Museum_displays_23.jpg/960px-National_Football_Museum_displays_23.jpg',
+			credit: 'Hmickey · CC BY-SA 4.0',
+			source: 'https://commons.wikimedia.org/wiki/File:National_Football_Museum_displays_23.jpg'
+		},
+		retroShirt: {
+			url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Maglia_di_paolo_maldini_indossata_in_italia_90%2C_01.JPG/960px-Maglia_di_paolo_maldini_indossata_in_italia_90%2C_01.JPG',
+			credit: 'Sailko · CC BY 3.0',
+			source: 'https://commons.wikimedia.org/wiki/File:Maglia_di_paolo_maldini_indossata_in_italia_90,_01.JPG'
+		},
+		awayShirt: {
+			url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/9/91/National_Football_Museum_displays_49.jpg/960px-National_Football_Museum_displays_49.jpg',
+			credit: 'Hmickey · CC BY-SA 4.0',
+			source: 'https://commons.wikimedia.org/wiki/File:National_Football_Museum_displays_49.jpg'
+		},
+		championTrophy: {
+			url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/FA_Cup_Trophy_at_Manchester_National_Football_Museum_%28Ank_Kumar%29_01.jpg/960px-FA_Cup_Trophy_at_Manchester_National_Football_Museum_%28Ank_Kumar%29_01.jpg',
+			credit: 'Ank Kumar · CC BY-SA 4.0',
+			source: 'https://commons.wikimedia.org/wiki/File:FA_Cup_Trophy_at_Manchester_National_Football_Museum_(Ank_Kumar)_01.jpg'
+		},
+		miniTrophy: {
+			url: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/FIFA_World_Cup_Trophy_%28Jules_Rimet_Trophy%29_at_National_Football_Museum%2C_Manchester_01.jpg/960px-FIFA_World_Cup_Trophy_%28Jules_Rimet_Trophy%29_at_National_Football_Museum%2C_Manchester_01.jpg',
+			credit: 'Ank Kumar · CC BY-SA 4.0',
+			source: 'https://commons.wikimedia.org/wiki/File:FIFA_World_Cup_Trophy_(Jules_Rimet_Trophy)_at_National_Football_Museum,_Manchester_01.jpg'
+		},
+		vintageTrophy: {
+			url: 'https://upload.wikimedia.org/wikipedia/commons/1/12/1927_Joseph_H._Jolley_Trophy_for_the_Eastern_Football_Championship.jpg',
+			credit: 'Dominio público',
+			source: 'https://commons.wikimedia.org/wiki/File:1927_Joseph_H._Jolley_Trophy_for_the_Eastern_Football_Championship.jpg'
+		}
+	};
+	const categoryPhotos = {
+		Camisas: photos.localShirt,
+		Trofeos: photos.championTrophy
 	};
 	const listings = [
-		{ id: 'shirt-local', title: 'Camisa local temporada 2026', category: 'Camisas', condition: 'Como nuevo', price: 189000, city: 'Bogotá, Chapinero', seller: 'Mateo Rojas', description: 'Camisa original, talla L. Usada pocas veces y en excelente estado.', image: photos.Camisas, createdAt: Date.now() - 1000 * 60 * 40 },
-		{ id: 'shirt-retro', title: 'Camisa retro selección 1990', category: 'Camisas', condition: 'Buen estado', price: 175000, city: 'Bogotá, La Candelaria', seller: 'Valentina Cruz', description: 'Diseño clásico, talla M. Tiene un pequeño detalle en la manga.', image: 'https://images.unsplash.com/photo-1556906781-9a412961c28c?auto=format&fit=crop&w=900&q=85', createdAt: Date.now() - 1000 * 60 * 60 * 3 },
-		{ id: 'shirt-away', title: 'Camisa visitante edición especial', category: 'Camisas', condition: 'Nuevo', price: 210000, city: 'Bogotá, Teusaquillo', seller: 'Andrés Peña', description: 'Edición especial, talla S. Conserva etiquetas y empaque.', image: 'https://images.unsplash.com/photo-1564859228273-274232fdb516?auto=format&fit=crop&w=900&q=85', createdAt: Date.now() - 1000 * 60 * 60 * 5 },
-		{ id: 'trophy-champion', title: 'Trofeo de campeón, 30 cm', category: 'Trofeos', condition: 'Nuevo', price: 98000, city: 'Bogotá, Usaquén', seller: 'Laura Gómez', description: 'Trofeo metálico para torneo amateur. Placa personalizable.', image: photos.Trofeos, createdAt: Date.now() - 1000 * 60 * 60 * 7 },
-		{ id: 'trophy-mini', title: 'Réplica mini copa continental', category: 'Trofeos', condition: 'Como nuevo', price: 145000, city: 'Bogotá, Suba', seller: 'Santiago Ruiz', description: 'Pieza de colección con base de madera e incluye estuche.', image: photos.Trofeos, createdAt: Date.now() - 1000 * 60 * 60 * 9 },
-		{ id: 'trophy-vintage', title: 'Copa vintage para colección', category: 'Trofeos', condition: 'Buen estado', price: 76000, city: 'Bogotá, Fontibón', seller: 'Nicolás Díaz', description: 'Copa decorativa de colección, conservada en muy buen estado.', image: photos.Trofeos, createdAt: Date.now() - 1000 * 60 * 60 * 13 }
+		{ id: 'shirt-local', title: 'Camisa local temporada 2026', category: 'Camisas', condition: 'Como nuevo', price: 189000, city: 'Bogotá, Chapinero', seller: 'Mateo Rojas', description: 'Camisa original, talla L. Usada pocas veces y en excelente estado.', photo: photos.localShirt, createdAt: Date.now() - 1000 * 60 * 40 },
+		{ id: 'shirt-retro', title: 'Camisa retro selección 1990', category: 'Camisas', condition: 'Buen estado', price: 175000, city: 'Bogotá, La Candelaria', seller: 'Valentina Cruz', description: 'Diseño clásico, talla M. Tiene un pequeño detalle en la manga.', photo: photos.retroShirt, createdAt: Date.now() - 1000 * 60 * 60 * 3 },
+		{ id: 'shirt-away', title: 'Camisa visitante edición especial', category: 'Camisas', condition: 'Nuevo', price: 210000, city: 'Bogotá, Teusaquillo', seller: 'Andrés Peña', description: 'Edición especial, talla S. Conserva etiquetas y empaque.', photo: photos.awayShirt, createdAt: Date.now() - 1000 * 60 * 60 * 5 },
+		{ id: 'trophy-champion', title: 'Trofeo de campeón, 30 cm', category: 'Trofeos', condition: 'Nuevo', price: 98000, city: 'Bogotá, Usaquén', seller: 'Laura Gómez', description: 'Trofeo metálico para torneo amateur. Placa personalizable.', photo: photos.championTrophy, createdAt: Date.now() - 1000 * 60 * 60 * 7 },
+		{ id: 'trophy-mini', title: 'Réplica mini copa continental', category: 'Trofeos', condition: 'Como nuevo', price: 145000, city: 'Bogotá, Suba', seller: 'Santiago Ruiz', description: 'Pieza de colección con base de madera e incluye estuche.', photo: photos.miniTrophy, createdAt: Date.now() - 1000 * 60 * 60 * 9 },
+		{ id: 'trophy-vintage', title: 'Copa vintage para colección', category: 'Trofeos', condition: 'Buen estado', price: 76000, city: 'Bogotá, Fontibón', seller: 'Nicolás Díaz', description: 'Copa decorativa de colección, conservada en muy buen estado.', photo: photos.vintageTrophy, createdAt: Date.now() - 1000 * 60 * 60 * 13 }
 	];
 
 	let userListings = [];
@@ -53,11 +85,26 @@
 		return node;
 	}
 
+	function listingPhoto(item) {
+		return item.photo || (item.image ? { url: item.image } : categoryPhotos[item.category] || categoryPhotos.Camisas);
+	}
+
+	function addPhotoCredit(photo, className) {
+		if (!photo.credit || !photo.source) return null;
+		const link = element('a', className, photo.credit);
+		link.href = photo.source;
+		link.target = '_blank';
+		link.rel = 'license noopener noreferrer';
+		link.setAttribute('aria-label', `Crédito de la foto: ${photo.credit} (se abre en otra pestaña)`);
+		return link;
+	}
+
 	function createCard(item) {
 		const card = element('article', 'listing-card');
 		const photoWrap = element('div', 'listing-photo-wrap');
+		const photo = listingPhoto(item);
 		const image = element('img', 'listing-photo');
-		image.src = item.image || photos[item.category] || photos.Camisas;
+		image.src = photo.url;
 		image.alt = item.title;
 		image.loading = 'lazy';
 
@@ -69,6 +116,8 @@
 		favorite.setAttribute('aria-pressed', String(favorites.has(item.id)));
 		favorite.setAttribute('aria-label', `Guardar ${item.title} en favoritos`);
 		photoWrap.append(image, tag, favorite);
+		const credit = addPhotoCredit(photo, 'image-credit listing-image-credit');
+		if (credit) photoWrap.append(credit);
 
 		const info = element('div', 'listing-info');
 		info.append(element('p', 'listing-price', formatPrice(Number(item.price))));
@@ -148,9 +197,14 @@
 
 	function openDetails(item) {
 		currentListing = item;
+		const photo = listingPhoto(item);
 		const image = document.querySelector('#detail-image');
-		image.src = item.image || photos[item.category] || photos.Camisas;
+		image.src = photo.url;
 		image.alt = item.title;
+		const credit = document.querySelector('#detail-image-credit');
+		credit.hidden = !photo.credit || !photo.source;
+		credit.href = photo.source || '';
+		credit.textContent = photo.credit ? `Foto: ${photo.credit}` : '';
 		document.querySelector('#detail-category').textContent = item.category;
 		document.querySelector('#detail-title').textContent = item.title;
 		document.querySelector('#detail-price').textContent = formatPrice(Number(item.price));
