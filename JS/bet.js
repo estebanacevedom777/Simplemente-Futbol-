@@ -9,22 +9,28 @@
     const toggleFormButton = document.querySelector('#toggle-match-form');
     const closeFormButton = document.querySelector('#close-match-form');
     const feedback = document.querySelector('#match-feedback');
+    const placeBetButton = document.querySelector('#place-bet');
+    const loginRequiredMessage = document.querySelector('#bet-login-required');
+    const betFeedback = document.querySelector('#bet-feedback');
 
     if (!selectionArea || !stakeInput || !totalOdds || !potentialWinnings || !matchesPanel
-        || !customMatches || !matchForm || !toggleFormButton || !closeFormButton || !feedback) {
+        || !customMatches || !matchForm || !toggleFormButton || !closeFormButton || !feedback
+        || !placeBetButton || !loginRequiredMessage || !betFeedback) {
         return;
     }
 
     let storedMatches = [];
     let currentUserId = null;
-    let feedbackTimer;
+    let isAdmin = false;
 
-    function showFeedback(message) {
+    function showFeedback(message, type = 'success') {
         feedback.textContent = message;
-        window.clearTimeout(feedbackTimer);
-        feedbackTimer = window.setTimeout(() => {
-            feedback.textContent = '';
-        }, 4000);
+        feedback.dataset.state = type;
+    }
+
+    function showBetFeedback(message, type = 'success') {
+        betFeedback.textContent = message;
+        betFeedback.dataset.state = type;
     }
 
     function formatKickoff(value) {
@@ -87,13 +93,14 @@
             marketGrid.append(input, optionLabel);
         });
 
+        card.append(meta, teams, marketGrid);
         if (match.ownerId === currentUserId) {
             const removeButton = document.createElement('button');
             removeButton.className = 'delete-custom-match';
             removeButton.type = 'button';
             removeButton.dataset.removeMatch = match.id;
             removeButton.textContent = 'Eliminar partido personalizado';
-            card.append(meta, teams, marketGrid, removeButton);
+            card.append(removeButton);
         }
         return card;
     }
@@ -171,6 +178,10 @@
 
     matchForm.addEventListener('submit', async (event) => {
         event.preventDefault();
+        if (!isAdmin) {
+            showFeedback('Solo el administrador puede agregar partidos.', 'error');
+            return;
+        }
         const data = new FormData(matchForm);
         const match = {
             competition: String(data.get('competition')).trim(),
@@ -199,9 +210,57 @@
             matchForm.reset();
             matchForm.hidden = true;
             toggleFormButton.setAttribute('aria-expanded', 'false');
-            showFeedback('Partido agregado a la base de datos. Ya puedes seleccionarlo en tu pronóstico.');
+            showFeedback('Partido guardado en la base de datos. Ya puedes seleccionarlo en tu pronóstico.');
         } catch (error) {
-            showFeedback(error.message);
+            showFeedback(error.message, 'error');
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+
+    placeBetButton.addEventListener('click', async () => {
+        if (!currentUserId) {
+            showBetFeedback('Inicia sesión para guardar tu apuesta simulada.', 'error');
+            return;
+        }
+
+        const selectedInputs = [...matchesPanel.querySelectorAll('.market-grid input:checked')];
+        if (selectedInputs.length === 0) {
+            showBetFeedback('Selecciona al menos un resultado antes de guardar tu apuesta.', 'error');
+            return;
+        }
+        if (selectedInputs.length > 10) {
+            showBetFeedback('Una apuesta puede incluir como máximo 10 selecciones.', 'error');
+            return;
+        }
+        if (!stakeInput.reportValidity()) {
+            showBetFeedback('Ingresa un importe válido de al menos COP $1.', 'error');
+            stakeInput.focus();
+            return;
+        }
+
+        const selections = selectedInputs.map((input) => {
+            const matchCard = input.closest('.match-card');
+            const teams = [...matchCard.querySelectorAll('.teams strong')];
+            const choiceLabel = input.nextElementSibling.querySelector('span').textContent;
+            return {
+                match: `${teams[0].textContent} - ${teams[1].textContent}`,
+                competition: matchCard.querySelector('.match-meta span').textContent,
+                choice: choiceLabel,
+                odds: Number(input.nextElementSibling.querySelector('strong').textContent)
+            };
+        });
+        const submitButton = placeBetButton;
+        submitButton.disabled = true;
+        showBetFeedback('Guardando tu apuesta simulada...', 'pending');
+        try {
+            const { bet } = await window.SF_API.post('/api/bets', {
+                stake: Number(stakeInput.value),
+                selections
+            });
+            showBetFeedback(`Tu apuesta simulada se guardó correctamente en la base de datos (referencia: ${bet.id}).`);
+        } catch (error) {
+            showBetFeedback(error.message, 'error');
         } finally {
             submitButton.disabled = false;
         }
@@ -218,7 +277,7 @@
             updateBetSlip();
             showFeedback('Partido personalizado eliminado.');
         } catch (error) {
-            showFeedback(error.message);
+            showFeedback(error.message, 'error');
             button.disabled = false;
         }
     });
@@ -228,11 +287,16 @@
         window.SF_API.request('/api/session')
     ]).then(([{ matches }, { user }]) => {
         currentUserId = user ? user.id : null;
+        isAdmin = user ? user.role === 'admin' : false;
+        toggleFormButton.hidden = !isAdmin;
+        placeBetButton.hidden = !user;
+        loginRequiredMessage.hidden = Boolean(user);
         storedMatches = matches;
         renderCustomMatches();
         updateBetSlip();
     }).catch((error) => {
-        showFeedback(error.message);
+        showFeedback(error.message, 'error');
+        showBetFeedback('No se pudo comprobar la sesión ni guardar tu apuesta.', 'error');
     });
 
     matchesPanel.addEventListener('change', (event) => {

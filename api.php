@@ -73,7 +73,7 @@ function current_user(PDO $db): ?array
     if (!is_string($userId)) {
         return null;
     }
-    $query = $db->prepare('SELECT id, name, email FROM users WHERE id = ?');
+    $query = $db->prepare('SELECT id, name, email, role FROM users WHERE id = ?');
     $query->execute([$userId]);
     $user = $query->fetch();
     if (!$user) {
@@ -88,6 +88,15 @@ function require_user(PDO $db): array
     $user = current_user($db);
     if ($user === null) {
         fail(401, 'Inicia sesión para continuar.');
+    }
+    return $user;
+}
+
+function require_admin(PDO $db): array
+{
+    $user = require_user($db);
+    if ($user['role'] !== 'admin') {
+        fail(403, 'Solo el administrador puede agregar partidos.');
     }
     return $user;
 }
@@ -193,7 +202,7 @@ function route(PDO $db, string $action, string $method): void
                 }
                 throw $error;
             }
-            respond(201, ['user' => ['id' => $id, 'name' => $name, 'email' => $email]]);
+            respond(201, ['user' => ['id' => $id, 'name' => $name, 'email' => $email, 'role' => 'user']]);
         }
 
         if ($action === 'login') {
@@ -202,7 +211,7 @@ function route(PDO $db, string $action, string $method): void
             if (!is_string($email) || !is_string($password)) {
                 fail(400, 'Correo o contraseña incorrectos.');
             }
-            $query = $db->prepare('SELECT id, name, email, password_hash FROM users WHERE email = ?');
+            $query = $db->prepare('SELECT id, name, email, password_hash, role FROM users WHERE email = ?');
             $query->execute([strtolower(trim($email))]);
             $user = $query->fetch();
             if (!$user || !password_verify($password, $user['password_hash'])) {
@@ -210,7 +219,12 @@ function route(PDO $db, string $action, string $method): void
             }
             session_regenerate_id(true);
             $_SESSION['user_id'] = $user['id'];
-            respond(200, ['user' => ['id' => $user['id'], 'name' => $user['name'], 'email' => $user['email']]]);
+            respond(200, ['user' => [
+                'id' => $user['id'],
+                'name' => $user['name'],
+                'email' => $user['email'],
+                'role' => $user['role'],
+            ]]);
         }
 
         if ($action === 'logout') {
@@ -284,7 +298,7 @@ function route(PDO $db, string $action, string $method): void
         }
 
         if ($action === 'matches') {
-            $user = require_user($db);
+            $user = require_admin($db);
             $competition = required_text($data, 'competition', 40);
             $homeTeam = required_text($data, 'homeTeam', 40);
             $awayTeam = required_text($data, 'awayTeam', 40);
@@ -313,6 +327,67 @@ function route(PDO $db, string $action, string $method): void
                 'id' => $id, 'competition' => $competition, 'kickoff' => $kickoff, 'homeTeam' => $homeTeam,
                 'awayTeam' => $awayTeam, 'homeOdds' => (float) $odds[0], 'drawOdds' => (float) $odds[1],
                 'awayOdds' => (float) $odds[2], 'ownerId' => $user['id'],
+            ]]);
+        }
+
+        if ($action === 'bets') {
+            $user = require_user($db);
+            $stake = $data['stake'] ?? null;
+            if (!is_numeric($stake) || !is_finite((float) $stake)
+                || (float) $stake < 1 || (float) $stake > 1000000000
+                || floor((float) $stake) !== (float) $stake) {
+                fail(400, 'El importe debe ser un número entero entre COP $1 y COP $1.000.000.000.');
+            }
+
+            $selections = $data['selections'] ?? null;
+            if (!is_array($selections) || count($selections) < 1 || count($selections) > 10) {
+                fail(400, 'Selecciona entre 1 y 10 resultados para tu apuesta.');
+            }
+
+            $cleanSelections = [];
+            $combinedOdds = 1.0;
+            foreach ($selections as $selection) {
+                if (!is_array($selection)) {
+                    fail(400, 'Una de las selecciones enviadas no es válida.');
+                }
+                $match = required_text($selection, 'match', 100);
+                $competition = required_text($selection, 'competition', 40);
+                $choice = $selection['choice'] ?? null;
+                $odd = $selection['odds'] ?? null;
+                if (!is_string($choice) || !in_array($choice, ['1', 'X', '2'], true)
+                    || !is_numeric($odd) || !is_finite((float) $odd)
+                    || (float) $odd < 1.01 || (float) $odd > 1000) {
+                    fail(400, 'Una de las selecciones o cuotas no es válida.');
+                }
+                $cleanSelections[] = [
+                    'match' => $match,
+                    'competition' => $competition,
+                    'choice' => $choice,
+                    'odds' => (float) $odd,
+                ];
+                $combinedOdds *= (float) $odd;
+            }
+
+            $id = uuid();
+            $createdAt = (int) (microtime(true) * 1000);
+            $query = $db->prepare(
+                'INSERT INTO bets (id, user_id, stake, selections, combined_odds, created_at)
+                 VALUES (?, ?, ?, ?, ?, ?)'
+            );
+            $query->execute([
+                $id,
+                $user['id'],
+                number_format((float) $stake, 2, '.', ''),
+                json_encode($cleanSelections, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR),
+                number_format($combinedOdds, 4, '.', ''),
+                $createdAt,
+            ]);
+            respond(201, ['bet' => [
+                'id' => $id,
+                'stake' => (float) $stake,
+                'selections' => $cleanSelections,
+                'combinedOdds' => $combinedOdds,
+                'createdAt' => $createdAt,
             ]]);
         }
     }

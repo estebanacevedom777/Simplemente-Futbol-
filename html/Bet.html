@@ -3,13 +3,12 @@
 
 <head>
     <meta charset="UTF-8">
-    <base href="/Simplemente-Futbol/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bet | Simplemente Futbol</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/bet.css">
-    <script src="JS/api.js" defer></script>
-    <script src="JS/bet.js" defer></script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/bet.css">
+    <script src="../JS/api.js" defer></script>
+    <script src="../JS/bet.js" defer></script>
 </head>
 
 <body class="bet-page">
@@ -20,16 +19,16 @@
                 <h1>Pronostica el partido.</h1>
                 <p class="bet-intro">Elige tus mercados favoritos y arma tu combinada.</p>
             </div>
-            <a class="back-link" href="html/index.html">Inicio</a>
+            <a class="back-link" href="./index.html">Inicio</a>
         </header>
 
         <nav class="bet-nav" aria-label="Navegación principal">
-            <a href="html/index.html">Inicio</a>
-            <a class="active" href="html/Bet.html" aria-current="page">Bet</a>
-            <a href="html/Marketplace.html">Marketplace</a>
-            <a href="html/Estadistica.html">Estadísticas</a>
-            <a href="html/login.html">Iniciar sesión</a>
-            <a href="html/signup.html">Crear cuenta</a>
+            <a href="./index.html">Inicio</a>
+            <a class="active" href="./Bet.html" aria-current="page">Bet</a>
+            <a href="./Marketplace.html">Marketplace</a>
+            <a href="./Estadistica.html">Estadísticas</a>
+            <a href="./login.html">Iniciar sesión</a>
+            <a href="./signup.html">Crear cuenta</a>
         </nav>
 
         <main class="bet-layout" id="partidos">
@@ -39,9 +38,9 @@
                         <p class="eyebrow">TU CANCHA / TUS PRONÓSTICOS</p>
                         <h2 id="matches-title">Mercados destacados</h2>
                     </div>
-                    <button class="add-match-toggle" id="toggle-match-form" type="button" aria-expanded="false" aria-controls="add-match-form">+ Agregar partido</button>
+                    <button class="add-match-toggle" id="toggle-match-form" type="button" aria-expanded="false" aria-controls="add-match-form" hidden>+ Agregar partido</button>
                 </div>
-                <p class="demo-note">Partidos y cuotas de demostración. No se realizan apuestas ni transacciones.</p>
+                <p class="demo-note">Pronósticos simulados; no se realizan transacciones con dinero real.</p>
                 <form class="add-match-panel" id="add-match-form" hidden>
                     <div class="add-match-heading">
                         <div>
@@ -74,7 +73,7 @@
                         </label>
                     </div>
                     <div class="match-form-actions">
-                        <p>Se guardará en la base de datos. Inicia sesión para agregar un partido.</p>
+                        <p>Solo el administrador puede guardar partidos en la base de datos.</p>
                         <button class="add-match-submit" type="submit">Guardar partido</button>
                     </div>
                 </form>
@@ -126,11 +125,16 @@
                     <p class="empty-slip">Selecciona una cuota en los partidos para añadirla a tu pronóstico.</p>
                 </div>
                 <label class="stake-label" for="stake">Importe de apuesta</label>
-                <div class="stake-input"><span>COP $</span><input id="stake" type="number" min="1" step="1" value="10">
+                <div class="stake-input"><span>COP $</span><input id="stake" type="number" min="1" max="1000000000" step="1" value="10" required>
                 </div>
                 <div class="slip-total"><span>Cuota total</span><strong>Se calcula al confirmar</strong></div>
                 <div class="slip-total potential"><span>Ganancia potencial</span><strong>Según selección</strong></div>
-                <a class="place-bet" href="#partidos">Revisar pronóstico</a>
+                <button class="place-bet" id="place-bet" type="button" hidden>Guardar apuesta simulada</button>
+                <p class="bet-login-required" id="bet-login-required" hidden>
+                    Inicia sesión para guardar tu apuesta simulada.
+                    <a href="./login.html">Iniciar sesión</a>
+                </p>
+                <p class="bet-feedback" id="bet-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
                 <p class="bet-disclaimer">Simulación educativa: este sitio no acepta apuestas reales.</p>
             </aside>
         </main>

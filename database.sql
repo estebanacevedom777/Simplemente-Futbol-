@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
     name VARCHAR(60) NOT NULL,
     email VARCHAR(254) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
+    role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
     created_at BIGINT NOT NULL
 ) ENGINE=InnoDB;
 
@@ -47,4 +48,15 @@ CREATE TABLE IF NOT EXISTS custom_matches (
     created_at BIGINT NOT NULL,
     INDEX matches_created_at (created_at),
     CONSTRAINT matches_user_fk FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS bets (
+    id CHAR(36) NOT NULL PRIMARY KEY,
+    user_id CHAR(36) NOT NULL,
+    stake DECIMAL(12, 2) NOT NULL,
+    selections JSON NOT NULL,
+    combined_odds DECIMAL(36, 4) NOT NULL,
+    created_at BIGINT NOT NULL,
+    INDEX bets_user_created_at (user_id, created_at),
+    CONSTRAINT bets_user_fk FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
